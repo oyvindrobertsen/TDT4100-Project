@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="Dawn of the gods" tilewidth="32" tileheight="32">
+  <image source="dawn_of_the_gods_0.png" trans="ff00ff" width="1312" height="1504"/>
+ </tileset>
+ <tileset firstgid="1928" name="kb,jhv" tilewidth="32" tileheight="32">
+  <image source="lpc_barbarian.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="1932" name="Cute" tilewidth="32" tileheight="32">
+  <image source="random_0.png" width="311" height="118"/>
+ </tileset>
+ <tileset firstgid="1959" name="sky1" tilewidth="1280" tileheight="800">
+  <image source="sky1.png" width="1920" height="1200"/>
+ </tileset>
+ <tileset firstgid="1960" name="lgb" tilewidth="32" tileheight="32">
+  <image source="pubdlcnt.png" width="32" height="32"/>
+ </tileset>
+ <layer name="background" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztziEBAAAIA7A7+qegJgmwYLYESwAAAAAAAAAAYNf1PQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALg1d1YArw==
+  </data>
+ </layer>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2UFKw0AYBtDJxoso7lU8R/daz9Lr2IXWm6hF8TrOkIZMBxtUolOY9+AjJauQL/9MSkIAgJ+7jLmayHW9S2vae+0LYI8+jkutPm5jlrvcZWldrT4eYu5jtjGb3fG10rUck5p9bMLYhT56tecjnxF91J+PvBN91O8j9TB0oo/6fQyzYT56c/dxE/bfY5dFhnOLbpyPfF9v3dx9pOd+Hfrnfj3xe1sknTMf8/fxEnPajTn7Ium+52tUntbN3cdzzOPJdMoO7B+jGn2kGcq7SMdhX2/dX/XxcSBDH+VaZT56c/fxFvp7/nQgZR/lPtK6ufs47763XpXvV633cRH674CrMP2d8Dcp/3OUWXT2cwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4P99As+5kRM=
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt17EJwzAARUGn8ibe10V28EBZJ2BMapWxXsgdqP/ooULLAvD7jnX2gv+1R+7+NXtARKXHe/aAiEqP7TF7QUOlBx96tOjRokeLHi16tHyrx3MdH8a8jxY9WvRo0aNFjxY9WvRoufv/AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJcTsgYVRA==
+  </data>
+ </layer>
+ <layer name="Character" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0asNACAUBMFzr3U+TYPB4ghmpoJNNgEAAAAAAAAAblolvX5XcIz9YvoBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAQwvcHAJD
+  </data>
+ </layer>
+</map>
