@@ -21,7 +21,9 @@ public class MainDisplay extends BasicGame {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		map.render(0,0,10,10,width,height);
+		map.render(0,0,0);
+		map.render(0,0,1);
+		map.render(0,0,2);
 		if( input.isKeyDown(Input.KEY_UP)		&&	y > 0				)	y -= speed;
 		if( input.isKeyDown(Input.KEY_DOWN)		&&	y < height-playerH	)	y += speed;
 		if( input.isKeyDown(Input.KEY_LEFT)		&&	x > 0				)	x -= speed;
@@ -34,8 +36,8 @@ public class MainDisplay extends BasicGame {
 		map = new TiledMap("res/Firsttest.tmx");
 		input = gc.getInput();
 		
-		width = 800;
-		height = 600;
+		width = 1200;
+		height = 800;
 		
 		x = 50;
 		y = 50;
@@ -51,7 +53,7 @@ public class MainDisplay extends BasicGame {
 	
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new MainDisplay("PlatformGame"));
-		app.setDisplayMode(800, 600, false); 
+		app.setDisplayMode(1200, 800, false); 
 		app.start();
 	}
 	
