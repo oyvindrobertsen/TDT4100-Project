@@ -1,7 +1,6 @@
 package logic;
 
 import map.Tile;
-import map.TileType;
 
 public abstract class WorldObject extends Tile{
 

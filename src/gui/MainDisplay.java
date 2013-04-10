@@ -1,5 +1,9 @@
 package gui;
 
+import map.Level;
+
+import logic.GameState;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -14,6 +18,7 @@ public class MainDisplay extends BasicGame {
 	private TiledMap map;
 	private Input input;
 	private int x, y, width, height, playerW, playerH, speed;
+	private GameState state;
 
 	public MainDisplay(String title) {
 		super(title);
@@ -34,7 +39,10 @@ public class MainDisplay extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		map = new TiledMap("res/Firsttest.tmx");
+		state = new GameState(new Level(map));
 		input = gc.getInput();
+		
+		System.out.println(state.getLevel().toString());
 		
 		width = 1200;
 		height = 800;
