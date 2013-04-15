@@ -26,6 +26,7 @@ public class Level {
 			for (int j = 0; j < levelGrid.get(i).size(); j++) {
 				tempStr += levelGrid.get(i).get(j);
 			}
+			tempStr += "\n";
 		}
 		return tempStr;
 	}

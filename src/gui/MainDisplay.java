@@ -26,9 +26,8 @@ public class MainDisplay extends BasicGame {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		map.render(0,0,0);
-		map.render(0,0,1);
-		map.render(0,0,2);
+		map.render(0,0,0); //Background
+		map.render(0,0,1); //Terrain
 		if( input.isKeyDown(Input.KEY_UP)		&&	y > 0				)	y -= speed;
 		if( input.isKeyDown(Input.KEY_DOWN)		&&	y < height-playerH	)	y += speed;
 		if( input.isKeyDown(Input.KEY_LEFT)		&&	x > 0				)	x -= speed;

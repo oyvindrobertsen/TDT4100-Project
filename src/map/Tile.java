@@ -5,9 +5,12 @@ public class Tile {
 
 	public Tile(String objectName) {
 		for (TileType t : TileType.values()) {
+			System.out.println(objectName);
+			/*
 			if (objectName.equals(t)) {
 				tileType = t;
 			}
+			*/
 		}
 	}
 
