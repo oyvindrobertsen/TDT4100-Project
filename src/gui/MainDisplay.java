@@ -17,7 +17,9 @@ public class MainDisplay extends BasicGame {
 	
 	private TiledMap map;
 	private Input input;
-	private int x, y, width, height, playerW, playerH, speed;
+	private int x, y, playerW, playerH, speed;
+	private static final int WIDTH = 800;
+	private static final int HEIGHT = 600;
 	private GameState state;
 
 	public MainDisplay(String title) {
@@ -26,12 +28,12 @@ public class MainDisplay extends BasicGame {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		map.render(0,0,0); //Background
-		map.render(0,0,1); //Terrain
+		map.render(-400,-400,0); //Background
+		map.render(-400,-400,1); //Terrain
 		if( input.isKeyDown(Input.KEY_UP)		&&	y > 0				)	y -= speed;
-		if( input.isKeyDown(Input.KEY_DOWN)		&&	y < height-playerH	)	y += speed;
+		if( input.isKeyDown(Input.KEY_DOWN)		&&	y < HEIGHT-playerH	)	y += speed;
 		if( input.isKeyDown(Input.KEY_LEFT)		&&	x > 0				)	x -= speed;
-		if( input.isKeyDown(Input.KEY_RIGHT)	&&	x < width-playerW 	)	x += speed;
+		if( input.isKeyDown(Input.KEY_RIGHT)	&&	x < WIDTH-playerW 	)	x += speed;
 		g.fillOval(x, y, playerW, playerH);		// player-figur
 	}
 
@@ -42,9 +44,6 @@ public class MainDisplay extends BasicGame {
 		input = gc.getInput();
 		
 		System.out.println(state.getLevel().toString());
-		
-		width = 1200;
-		height = 800;
 		
 		x = 50;
 		y = 50;
@@ -60,7 +59,7 @@ public class MainDisplay extends BasicGame {
 	
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer(new MainDisplay("PlatformGame"));
-		app.setDisplayMode(1200, 800, false); 
+		app.setDisplayMode(WIDTH, HEIGHT, false); 
 		app.start();
 	}
 	

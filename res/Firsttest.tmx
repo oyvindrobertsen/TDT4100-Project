@@ -1,40 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
- <properties>
-  <property name="name" value="FirstMap"/>
- </properties>
- <tileset firstgid="1" name="main" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="50" height="40" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="background" tilewidth="1900" tileheight="1200">
+  <image source="sky1.png" width="1920" height="1200"/>
+ </tileset>
+ <tileset firstgid="2" name="main" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="3200" height="3200"/>
-  <tile id="101">
-   <properties>
-    <property name="name" value="TERRAIN"/>
-   </properties>
-  </tile>
-  <tile id="102">
-   <properties>
-    <property name="name" value="TERRAIN"/>
-   </properties>
-  </tile>
-  <tile id="103">
-   <properties>
-    <property name="name" value="TERRAIN"/>
-   </properties>
-  </tile>
-  <tile id="104">
-   <properties>
-    <property name="name" value="TERRAIN"/>
-   </properties>
-  </tile>
-  <tile id="105">
-   <properties>
-    <property name="name" value="TERRAIN"/>
-   </properties>
-  </tile>
-  <tile id="201">
-   <properties>
-    <property name="name" value="TERRAIN"/>
-   </properties>
-  </tile>
   <tile id="202">
    <properties>
     <property name="name" value="TERRAIN"/>
@@ -51,11 +21,6 @@
    </properties>
   </tile>
   <tile id="205">
-   <properties>
-    <property name="name" value="TERRAIN"/>
-   </properties>
-  </tile>
-  <tile id="301">
    <properties>
     <property name="name" value="TERRAIN"/>
    </properties>
@@ -81,17 +46,14 @@
    </properties>
   </tile>
  </tileset>
- <tileset firstgid="10001" name="background" tilewidth="1200" tileheight="800">
-  <image source="sky1.png" width="1920" height="1200"/>
- </tileset>
- <layer name="Background" width="100" height="100">
+ <layer name="BACKGROUND" width="50" height="40">
   <data encoding="base64" compression="zlib">
-   eJztzkENAAAIBKCrYAr7N7SDm/MDCUgAAAAAAAAAAADYqP4eAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwYQCXnwA5
+   eJzt0rEJADAMBLHP/qtlKNfuAwZHmuCKSwAAAAAAAIBfnOkAmjsd8MiWrwph9wDP
   </data>
  </layer>
- <layer name="Terrain" width="100" height="100">
+ <layer name="TERRAIN" width="50" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt0FEKgCAQBUA7Udn9b1B2pgoKJNb+ooIZeKzs80dTAgAAAAAAAAAA/mLaUrbM1TzP5bKLuqi/3mvtom6fy6Mv/ra+S2k4kqsMQe76HPT5pm/d3efYvf0rAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/twLucCW0
+   eJztzksKgDAMBcB6Iz/3v4GtV7KCCwlG3bmZgUdKk4aWAgAAAAAAAMAf1p7a087US1o4x/51JtavacmObE/801G3nnEoZTozP9R4npP7Kdl318/evb2Jc0vPDlzzMfY=
   </data>
  </layer>
 </map>
