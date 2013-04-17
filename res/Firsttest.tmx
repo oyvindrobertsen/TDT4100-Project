@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="50" height="40" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="background" tilewidth="1900" tileheight="1200">
-  <image source="sky1.png" width="1920" height="1200"/>
- </tileset>
- <tileset firstgid="2" name="main" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="25" height="19" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="main" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="3200" height="3200"/>
   <tile id="202">
    <properties>
@@ -45,15 +42,28 @@
     <property name="name" value="TERRAIN"/>
    </properties>
   </tile>
+  <tile id="919">
+   <properties>
+    <property name="name" value="PLAYER"/>
+   </properties>
+  </tile>
  </tileset>
- <layer name="BACKGROUND" width="50" height="40">
+ <tileset firstgid="10001" name="background" tilewidth="800" tileheight="600">
+  <image source="sky1.png" width="1920" height="1200"/>
+ </tileset>
+ <layer name="BACKGROUND" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJzt0rEJADAMBLHP/qtlKNfuAwZHmuCKSwAAAAAAAIBfnOkAmjsd8MiWrwph9wDP
+   eJxjYBgFo2AUjIJRMAoGJxBUHx52AABIvgBx
   </data>
  </layer>
- <layer name="TERRAIN" width="50" height="40">
+ <layer name="TERRAIN" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJztzksKgDAMBcB6Iz/3v4GtV7KCCwlG3bmZgUdKk4aWAgAAAAAAAMAf1p7a087US1o4x/51JtavacmObE/801G3nnEoZTozP9R4npP7Kdl318/evb2Jc0vPDlzzMfY=
+   eJxjYBgFo2AUjIJRMAoGJzgNxGeB+AwSjc4+Q6QamBiy+Dkg1mdkYDAAYkM0bIAkboBFDF0dOobJGQExANvvGMo=
+  </data>
+ </layer>
+ <layer name="PLAYER" width="25" height="19">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAooAzOYB9oFgxsAALXJAJw=
   </data>
  </layer>
 </map>

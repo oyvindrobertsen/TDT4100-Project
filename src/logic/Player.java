@@ -8,12 +8,18 @@ public class Player {
 	private static final int MAX_HEALT = 300;
 	
 	// Fields
-	private Point2d position;
+	private Point2d position;	   // A players current position (center of tile)
+	private Point2d [] cornerList; // A list containing the four cornerpoints of the user-tile
 	private int health;
 	
 	// Player constructor
 	public Player(Point2d position) {
 		this.position = position;
+		cornerList = new Point2d [4];
+		cornerList[0] = new Point2d(position.x-16, position.y-16); // Upper left
+		cornerList[1] = new Point2d(position.x-16, position.y+16); // Lower left
+		cornerList[2] = new Point2d(position.x+16, position.y-16); // Upper right
+		cornerList[3] = new Point2d(position.x+16, position.y+16); // Lower right
 		health = 100;
 	}
 	
@@ -25,7 +31,10 @@ public class Player {
 	public Point2d getPos() {
 		return position;
 	}
-
+	
+	public Point2d[] getCorners() {
+		return cornerList;
+	}
 	// Setters
 	public void setHealth(int health) {
 		if (health > 0 && health <= MAX_HEALT) {
@@ -49,5 +58,9 @@ public class Player {
 		}
 	}
 
+	
+	public void move(Direction dir) {
+		
+	}
 
 }
