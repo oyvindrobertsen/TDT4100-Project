@@ -2,6 +2,8 @@ package logic;
 
 import javax.vecmath.Point2d;
 
+import map.Level;
+
 
 public class Player {
 	// CONSTs
@@ -11,9 +13,11 @@ public class Player {
 	private Point2d position;	   // A players current position (center of tile)
 	private Point2d [] cornerList = new Point2d[4]; // A list containing the four cornerpoints of the user-tile
 	private int health;
+	private Level currentLevel;
 	
 	// Player constructor
-	public Player(Point2d position) {
+	public Player(Point2d position, Level currentLevel) {
+		this.currentLevel = currentLevel;
 		this.position = position;
 		updateCornerlist();
 		health = 100;
@@ -63,8 +67,13 @@ public class Player {
 
 	
 	public void move(Direction dir) {
-		position.x += dir.dx();
-		position.y += dir.dy();
+		for (int i = 0; i < 4; i++) {
+			if(currentLevel.isBlocked((int)cornerList[i].y+dir.dy(), (int)cornerList[i].x+dir.dx())) {
+				return;
+			}
+		}
+		this.position.x += dir.dx();
+		this.position.y += dir.dy();
 		updateCornerlist();
 	}
 

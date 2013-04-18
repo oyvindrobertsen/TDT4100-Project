@@ -39,14 +39,14 @@ public class Level {
 				tileID = map.getTileId(x, y, 2);
 				tileProp = map.getTileProperty(tileID, "name", "EMPTY");
 				if (tileProp.equals("PLAYER")) {
-					p = new Player(new Point2d(x*32+16, y*32+16));
+					p = new Player(new Point2d(x*32+16, y*32+16), this);
 				}
 			}
 		}
 	}
 
 	public boolean isBlocked(int i, int j) {
-		return levelGrid[i][j];
+		return levelGrid[(int)i/32][(int)j/32];
 	}
 	
 	public Player getPlayer() {
