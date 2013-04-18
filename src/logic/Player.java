@@ -9,18 +9,21 @@ public class Player {
 	
 	// Fields
 	private Point2d position;	   // A players current position (center of tile)
-	private Point2d [] cornerList; // A list containing the four cornerpoints of the user-tile
+	private Point2d [] cornerList = new Point2d[4]; // A list containing the four cornerpoints of the user-tile
 	private int health;
 	
 	// Player constructor
 	public Player(Point2d position) {
 		this.position = position;
-		cornerList = new Point2d [4];
+		updateCornerlist();
+		health = 100;
+	}
+	
+	private void updateCornerlist() {
 		cornerList[0] = new Point2d(position.x-16, position.y-16); // Upper left
 		cornerList[1] = new Point2d(position.x-16, position.y+16); // Lower left
 		cornerList[2] = new Point2d(position.x+16, position.y-16); // Upper right
 		cornerList[3] = new Point2d(position.x+16, position.y+16); // Lower right
-		health = 100;
 	}
 	
 	// Getters
@@ -60,7 +63,9 @@ public class Player {
 
 	
 	public void move(Direction dir) {
-		
+		position.x += dir.dx();
+		position.y += dir.dy();
+		updateCornerlist();
 	}
 
 }
