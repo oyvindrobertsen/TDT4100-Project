@@ -46,35 +46,33 @@ public class Player {
 	public Point2d[] getCorners() {
 		return cornerList;
 	}
+
 	// Setters
 	public void setHealth(int health) {
-		if (health > 0 && health <= MAX_HEALTH) {
+		if (health > 0 && health <= MAX_HEALTH)
 			this.health = health;
-		}
 	}
 	
 	public void increaseHealth(int dHealth) {
-		if (this.health + dHealth <= 300 && dHealth > 0) {
+		if (this.health + dHealth <= 300 && dHealth > 0)
 			this.health += dHealth;
-		} else if (dHealth > 0) {
+		else if (dHealth > 0)
 			this.health = 300;
-		}
 	}
 	
 	public void decreaseHealth(int dHealth) {
-		if (this.health - dHealth >= 0 && dHealth < 0) {
+		if (this.health - dHealth >= 0 && dHealth < 0)
 			this.health -= dHealth;
-		} else if (dHealth > 0) {
+		else if (dHealth > 0)
 			this.health = 0;
-		}
 	}
 
 	// Movement
 
 	private boolean moveIllegal( Direction dir ) {
 		for (int i = 0; i < 4; i++) {
-			int nextX = (int)cornerList[i].x+dir.dx();
-			int nextY = (int)cornerList[i].y+dir.dy();
+			int nextX = (int)cornerList[i].x + dir.dx();
+			int nextY = (int)cornerList[i].y + dir.dy();
 			if ( ( currentLevel.isBlocked(nextY, nextX) ) || nextY < 0 || nextY > 600 || nextX < 0 || nextX > 798 ) return true;
 		}
 		return false;
@@ -89,7 +87,7 @@ public class Player {
 	
 	public void jump(){
 		if( !moveIllegal( Direction.DOWN ) || moveIllegal( Direction.UP ) ) return;
-		accelerate(Direction.UP, 100);
+		accelerate(Direction.UP, 64);
 	}
 
 	public void accelerate(Direction dir, double magnitude) {
@@ -111,10 +109,8 @@ public class Player {
 
 	public void friction() {
 		if ( moveIllegal(Direction.DOWN) || moveIllegal(Direction.UP) ){
-			if ( velocityX > 0 )
-				velocityX -= .5;
-			if ( velocityX < 0 )
-				velocityX += .5;
+			if ( velocityX != 0 )
+				velocityX = (velocityX > .01) ? velocityX/10 : 0;
 		}
 /*		if ( moveIllegal(Direction.LEFT) || moveIllegal(Direction.RIGHT) ){
 			if ( velocityY > 0 )

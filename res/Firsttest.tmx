@@ -42,6 +42,21 @@
     <property name="name" value="TERRAIN"/>
    </properties>
   </tile>
+  <tile id="500">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="600">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="700">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
   <tile id="919">
    <properties>
     <property name="name" value="PLAYER"/>
@@ -51,17 +66,17 @@
  <tileset firstgid="10001" name="background" tilewidth="800" tileheight="600">
   <image source="sky1.png" width="1920" height="1200"/>
  </tileset>
- <layer name="BACKGROUND" width="25" height="19">
+ <layer name="BACKGROUND" width="25" height="19" visible="0">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMAoGJxBUHx52AABIvgBx
+   eJxjYBgFo2AUjIJRMAoGD9jLhGALqtPePnrYAQDm6AEw
   </data>
  </layer>
  <layer name="TERRAIN" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMAoGJzgNxGeB+AwSjc4+Q6QamBiy+Dkg1mdkYDAAYkM0bIAkboBFDF0dOobJGQExANvvGMo=
+   eJxjYBgFo2AUjIJRMBzAV0bamx/JRHvzke04DcRngfgMEo3OPkOkGpgYsvg5INYH2msAxIZo2ABJ3ACLGLo6dAyTMwJiAHI1HL0=
   </data>
  </layer>
- <layer name="PLAYER" width="25" height="19">
+ <layer name="PLAYER" width="25" height="19" visible="0">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMAooAzOYB9oFgxsAALXJAJw=
   </data>

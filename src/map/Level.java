@@ -30,17 +30,12 @@ public class Level {
 				// Wall detection
 				int tileID = map.getTileId(x, y, 1);
 				String tileProp = map.getTileProperty(tileID, "name", "EMPTY");
-				if (tileProp.equals("TERRAIN")) {
-					levelGrid[y][x] = true;
-				} else {
-					levelGrid[y][x] = false;
-				}
+				levelGrid[y][x] = tileProp.equals("TERRAIN");
 				// Player detection
 				tileID = map.getTileId(x, y, 2);
 				tileProp = map.getTileProperty(tileID, "name", "EMPTY");
-				if (tileProp.equals("PLAYER")) {
+				if (tileProp.equals("PLAYER"))
 					p = new Player(new Point2d(x*32+15, y*32+15), this);
-				}
 			}
 		}
 	}
@@ -57,11 +52,7 @@ public class Level {
 		String tempStr = "";
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				if (levelGrid[y][x] == true) {
-					tempStr += "1 ";
-				} else {
-					tempStr += "0 ";
-				}
+				tempStr += (levelGrid[y][x]) ? "1 " : "0 ";
 			}
 			tempStr += "\n";
 		}
