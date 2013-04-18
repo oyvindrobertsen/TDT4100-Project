@@ -14,6 +14,8 @@ public class Player {
 	private Point2d [] cornerList = new Point2d[4]; // A list containing the four cornerpoints of the user-tile
 	private int health;
 	private Level currentLevel;
+
+	private double velocityX, velocityY;
 	
 	// Player constructor
 	public Player(Point2d position, Level currentLevel) {
@@ -21,6 +23,8 @@ public class Player {
 		this.position = position;
 		updateCornerlist();
 		health = 100;
+		velocityX = 0;
+		velocityY = 0;
 	}
 	
 	private void updateCornerlist() {
@@ -65,13 +69,7 @@ public class Player {
 		}
 	}
 
-	
-	public void move(Direction dir) {
-		if ( moveIllegal(dir) ) return;
-		this.position.x += dir.dx();
-		this.position.y += dir.dy();
-		updateCornerlist();
-	}
+	// Movement
 
 	private boolean moveIllegal( Direction dir ) {
 		for (int i = 0; i < 4; i++) {
@@ -80,6 +78,35 @@ public class Player {
 			if ( ( currentLevel.isBlocked(nextY, nextX) ) || nextY < 0 || nextY > 600 || nextX < 0 || nextX > 798 ) return true;
 		}
 		return false;
+	}
+	
+	public void move(Direction dir) {
+		if ( moveIllegal(dir) ) return;
+		this.position.x += dir.dx();
+		this.position.y += dir.dy();
+		updateCornerlist();
+	}
+	
+	public void jump(){
+		if( !moveIllegal(Direction.DOWN) || moveIllegal( Direction.UP ) ) return;
+		accelerate(Direction.UP, 50);
+	}
+
+	public void accelerate(Direction dir, double magnitude) {
+		velocityX += magnitude*dir.dx();
+		velocityY += magnitude*dir.dy();
+	}
+
+	public double getVelocityX() {
+		return velocityX;
+	}
+
+	public double getVelocityY() {
+		return velocityY;
+	}
+
+	public void gravitate() {
+		accelerate(Direction.DOWN, 0.7);
 	}
 
 }

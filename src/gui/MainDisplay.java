@@ -57,10 +57,16 @@ public class MainDisplay extends BasicGame {
 
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
-		if( input.isKeyDown(Input.KEY_UP)		) p.move(Direction.UP);
-		if( input.isKeyDown(Input.KEY_DOWN)    	) p.move(Direction.DOWN);
-		if( input.isKeyDown(Input.KEY_LEFT)    	) p.move(Direction.LEFT);
-		if( input.isKeyDown(Input.KEY_RIGHT)	) p.move(Direction.RIGHT);
+		if( input.isKeyDown(Input.KEY_UP) || input.isKeyDown(Input.KEY_SPACE)	) p.jump();
+		if( input.isKeyDown(Input.KEY_LEFT)    	) p.accelerate(Direction.LEFT, 1);
+		if( input.isKeyDown(Input.KEY_RIGHT)	) p.accelerate(Direction.RIGHT, 1);
+
+		p.gravitate();
+		
+		if( p.getVelocityX() > 0 ) p.move(Direction.RIGHT);
+		if( p.getVelocityX() < 0 ) p.move(Direction.LEFT);
+		if( p.getVelocityY() < 0 ) p.move(Direction.UP);
+		if( p.getVelocityY() > 0 ) p.move(Direction.DOWN);
 	}
 	
 	public static void main(String[] args) throws SlickException {
