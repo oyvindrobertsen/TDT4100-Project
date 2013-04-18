@@ -5,7 +5,7 @@ import javax.vecmath.Point2d;
 
 public class Player {
 	// CONSTs
-	private static final int MAX_HEALT = 300;
+	private static final int MAX_HEALTH = 300;
 	
 	// Fields
 	private Point2d position;	   // A players current position (center of tile)
@@ -37,7 +37,7 @@ public class Player {
 	}
 	// Setters
 	public void setHealth(int health) {
-		if (health > 0 && health <= MAX_HEALT) {
+		if (health > 0 && health <= MAX_HEALTH) {
 			this.health = health;
 		}
 	}
