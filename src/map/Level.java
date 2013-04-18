@@ -39,7 +39,7 @@ public class Level {
 				tileID = map.getTileId(x, y, 2);
 				tileProp = map.getTileProperty(tileID, "name", "EMPTY");
 				if (tileProp.equals("PLAYER")) {
-					p = new Player(new Point2d(x*32+16, y*32+16), this);
+					p = new Player(new Point2d(x*32+15, y*32+15), this);
 				}
 			}
 		}
