@@ -67,18 +67,19 @@ public class Player {
 
 	
 	public void move(Direction dir) {
-		for (int i = 0; i < 4; i++) {
-			if ( moveIllegal(i, dir) ) return;
-		}
+		if ( moveIllegal(dir) ) return;
 		this.position.x += dir.dx();
 		this.position.y += dir.dy();
 		updateCornerlist();
 	}
 
-	private boolean moveIllegal(int i, Direction dir) {
-		int nextX = (int)cornerList[i].x+dir.dx();
-		int nextY = (int)cornerList[i].y+dir.dy();
-		return ( ( currentLevel.isBlocked(nextY, nextX) ) || nextY < 0 || nextY > 600 || nextX < 0 || nextX > 798 );
+	private boolean moveIllegal( Direction dir ) {
+		for (int i = 0; i < 4; i++) {
+			int nextX = (int)cornerList[i].x+dir.dx();
+			int nextY = (int)cornerList[i].y+dir.dy();
+			if ( ( currentLevel.isBlocked(nextY, nextX) ) || nextY < 0 || nextY > 600 || nextX < 0 || nextX > 798 ) return true;
+		}
+		return false;
 	}
 
 }
