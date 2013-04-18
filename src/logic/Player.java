@@ -88,8 +88,8 @@ public class Player {
 	}
 	
 	public void jump(){
-		if( !moveIllegal(Direction.DOWN) || moveIllegal( Direction.UP ) ) return;
-		accelerate(Direction.UP, 50);
+		if( !moveIllegal( Direction.DOWN ) || moveIllegal( Direction.UP ) ) return;
+		accelerate(Direction.UP, 100);
 	}
 
 	public void accelerate(Direction dir, double magnitude) {
@@ -106,7 +106,22 @@ public class Player {
 	}
 
 	public void gravitate() {
-		accelerate(Direction.DOWN, 0.7);
+		accelerate(Direction.DOWN, 1);
+	}
+
+	public void friction() {
+		if ( moveIllegal(Direction.DOWN) || moveIllegal(Direction.UP) ){
+			if ( velocityX > 0 )
+				velocityX -= .5;
+			if ( velocityX < 0 )
+				velocityX += .5;
+		}
+/*		if ( moveIllegal(Direction.LEFT) || moveIllegal(Direction.RIGHT) ){
+			if ( velocityY > 0 )
+				velocityY -= .5;
+			if ( velocityY < 0 )
+				velocityY += .5;
+		}*/
 	}
 
 }
