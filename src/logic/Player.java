@@ -110,7 +110,7 @@ public class Player {
 	public void friction() {
 		if ( moveIllegal(Direction.DOWN) || moveIllegal(Direction.UP) ){
 			if ( velocityX != 0 )
-				velocityX = (velocityX > .01) ? velocityX/10 : 0;
+				velocityX = (Math.abs(velocityX) > .01) ? velocityX/10 : 0;
 		}
 /*		if ( moveIllegal(Direction.LEFT) || moveIllegal(Direction.RIGHT) ){
 			if ( velocityY > 0 )
