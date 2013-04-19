@@ -38,7 +38,6 @@ public class MainDisplay extends BasicGame {
 		//map.render(0, 0, 2);
 		
 		// Player rendering
-		// This is pretty
 		playerImage.draw( (float)p.getCorners()[0].x, (float)p.getCorners()[0].y );
 	}
 
@@ -64,29 +63,20 @@ public class MainDisplay extends BasicGame {
 			if( input.isKeyDown(Input.KEY_RIGHT) )	p.accelerate(Direction.RIGHT, 1);
 		}
 
-		p.gravitate();
-		p.friction();
+		p.applyForces();
 		
-		if( p.getVelocityX() > 0 ){
-			for ( int i = 0; i < Math.abs( (int)p.getVelocityX() ); i++) {
+		for ( int i = 0; i < Math.abs( (int)p.getVelocityX() ); i++) {
+			if( p.getVelocityX() > 0 )
 				p.move(Direction.RIGHT);
-			}
-		}
-		if( p.getVelocityX() < 0 ){
-			for ( int i = 0; i < Math.abs( (int)p.getVelocityX() ); i++) {
+			if( p.getVelocityX() < 0 )
 				p.move(Direction.LEFT);
-			}
 		}
-		if( p.getVelocityY() < 0 ){
-			for ( int i = 0; i < Math.abs( (int)p.getVelocityY() ); i++) {
+		for ( int i = 0; i < Math.abs( (int)p.getVelocityY() ); i++) {
+			if( p.getVelocityY() < 0 )
 				p.move(Direction.UP);
-			}
-		}
-		if( p.getVelocityY() > 0 ){
-			for ( int i = 0; i < Math.abs( (int)p.getVelocityY() ); i++) {
+			if( p.getVelocityY() > 0 )
 				p.move(Direction.DOWN);
 			}
-		}
 	}
 	
 	public static void main(String[] args) throws SlickException {
@@ -95,7 +85,7 @@ public class MainDisplay extends BasicGame {
 		app.start();
 	}
 	
-	public void keyPressed(int key, char c) {
+	public void keyPressed( int key, char c ) {
 		if (key == Input.KEY_ESCAPE)
 			System.exit(0);
 	}

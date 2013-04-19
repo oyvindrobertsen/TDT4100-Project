@@ -49,7 +49,7 @@ public class Player {
 
 	// Setters
 	public void setHealth(int health) {
-		if (health > 0 && health <= MAX_HEALTH)
+		if ( health > 0 && health <= MAX_HEALTH )
 			this.health = health;
 	}
 	
@@ -94,7 +94,7 @@ public class Player {
 		accelerate(Direction.UP, 12);
 	}
 
-	public void accelerate(Direction dir, double magnitude) {
+	public void accelerate( Direction dir, double magnitude ) {
 		velocityX += magnitude*dir.dx();
 		velocityY += magnitude*dir.dy();
 	}
@@ -107,23 +107,14 @@ public class Player {
 		return velocityY;
 	}
 
-	public void gravitate() {
-		if ( moveIllegal(Direction.DOWN) && velocityY > 0 ) {
+	public void applyForces() {
+		if ( moveIllegal(Direction.DOWN) && velocityY > 0 )
 			velocityY = 0;
-	}
 		else
 			accelerate(Direction.DOWN, 1);
-	}
 
-	public void friction() {
 		if ( moveIllegal(Direction.DOWN) || moveIllegal(Direction.UP ) )
 			velocityX = velocityX/1.25;
-/*		if ( moveIllegal(Direction.LEFT) || moveIllegal(Direction.RIGHT) ){
-			if ( velocityY > 0 )
-				velocityY -= .5;
-			if ( velocityY < 0 )
-				velocityY += .5;
-		}*/
 	}
 
 }
