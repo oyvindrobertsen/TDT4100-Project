@@ -63,7 +63,7 @@ public class Player {
 	}
 	
 	public void decreaseHealth(int dHealth) {
-		if (this.health - dHealth >= 0 && dHealth < 0)
+		if (this.health - dHealth >= 0 && dHealth > 0)
 			this.health -= dHealth;
 		else if (dHealth > 0)
 			this.health = 0;
@@ -71,7 +71,7 @@ public class Player {
 
 	// Movement
 
-	public boolean moveIllegal( Direction dir ) {
+	public boolean collision( Direction dir ) {
 		for (int i = 0; i < 4; i++) {
 			int nextX = (int)cornerList[i].x + dir.dx();
 			int nextY = (int)cornerList[i].y + dir.dy();
@@ -85,14 +85,20 @@ public class Player {
 	}
 	
 	public void move(Direction dir, int magnitude) {
-		if ( moveIllegal(dir) ) return;
+		if ( collision(dir) ) {
+			if (velocityX > 15 || velocityY > 15) {
+				decreaseHealth(3);
+				System.out.println("Health: " + this.health);
+			}
+			return;
+		}
 		this.position.x += dir.dx() * magnitude;
 		this.position.y += dir.dy() * magnitude;
 		updateCornerlist();
 	}
 	
 	public void jump(){
-		if( !moveIllegal( Direction.DOWN ) || moveIllegal( Direction.UP ) ) return;
+		if( !collision( Direction.DOWN ) || collision( Direction.UP ) ) return;
 		accelerate(Direction.UP, 12);
 	}
 
@@ -110,12 +116,12 @@ public class Player {
 	}
 
 	public void applyForces() {
-		if ( onLadder() || ( moveIllegal(Direction.DOWN) && velocityY > 0 ) )
+		if ( onLadder() || ( collision(Direction.DOWN) && velocityY > 0 ) )
 			velocityY = 0;
 		else
 			accelerate(Direction.DOWN, 1);
 
-		if ( moveIllegal(Direction.DOWN) || moveIllegal(Direction.UP ) )
+		if ( collision(Direction.DOWN) || collision(Direction.UP ) )
 			velocityX = velocityX/1.25;
 	}
 

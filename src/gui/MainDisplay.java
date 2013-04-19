@@ -53,7 +53,6 @@ public class MainDisplay extends BasicGame {
 		gc.setShowFPS(false);
 		
 		System.out.println(state.getLevel().toString());
-		
 	}
 
 	@Override
@@ -72,7 +71,7 @@ public class MainDisplay extends BasicGame {
 		if( input.isKeyDown(Input.KEY_SPACE) )
 			p.jump();
 		
-		if ( p.moveIllegal(Direction.DOWN) ) {
+		if ( p.collision(Direction.DOWN) ) {
 			if( input.isKeyDown(Input.KEY_LEFT) )	p.accelerate(Direction.LEFT, 1);
 			if( input.isKeyDown(Input.KEY_RIGHT) )	p.accelerate(Direction.RIGHT, 1);
 		}
