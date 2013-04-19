@@ -38,6 +38,7 @@ public class MainDisplay extends BasicGame {
 		//map.render(0, 0, 2);
 		
 		// Player rendering
+		// This is pretty
 		playerImage.draw( (float)p.getCorners()[0].x, (float)p.getCorners()[0].y );
 	}
 
