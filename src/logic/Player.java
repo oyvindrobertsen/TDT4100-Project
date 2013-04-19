@@ -74,7 +74,7 @@ public class Player {
 			int nextX = (int)cornerList[i].x + dir.dx();
 			int nextY = (int)cornerList[i].y + dir.dy();
 			try {
-				if ( ( currentLevel.isBlocked(nextY, nextX) ) || nextY < 0 || nextY > 600 || nextX < 0 || nextX > 800 ) return true;
+				if ( ( currentLevel.isBlocked(nextY, nextX) ) || nextX < 0 ) return true;
 			} catch (Exception e) {
 				return true;
 			}
@@ -108,13 +108,17 @@ public class Player {
 	}
 
 	public void applyForces() {
-		if ( moveIllegal(Direction.DOWN) && velocityY > 0 )
+		if ( onLadder() || ( moveIllegal(Direction.DOWN) && velocityY > 0 ) )
 			velocityY = 0;
 		else
 			accelerate(Direction.DOWN, 1);
 
 		if ( moveIllegal(Direction.DOWN) || moveIllegal(Direction.UP ) )
 			velocityX = velocityX/1.25;
+	}
+
+	public boolean onLadder() {
+		return currentLevel.isLadder( (int)position.y+15, (int)position.x );
 	}
 
 }

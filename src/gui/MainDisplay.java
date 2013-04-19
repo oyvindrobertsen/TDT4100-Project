@@ -35,7 +35,7 @@ public class MainDisplay extends BasicGame {
 		// General map rendering
 		map.render(0, 0, 0);
 		map.render(0, 0, 1);
-		//map.render(0, 0, 2);
+		map.render(0, 0, 2);
 		
 		// Player rendering
 		playerImage.draw( (float)p.getCorners()[0].x, (float)p.getCorners()[0].y );
@@ -56,8 +56,18 @@ public class MainDisplay extends BasicGame {
 
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
-		if( input.isKeyDown(Input.KEY_UP) || input.isKeyDown(Input.KEY_SPACE) )
+		
+		if ( p.onLadder() ){
+			if ( input.isKeyDown(Input.KEY_UP) )	p.move(Direction.UP);
+			if ( input.isKeyDown(Input.KEY_DOWN) )	p.move(Direction.DOWN);
+			if ( input.isKeyDown(Input.KEY_LEFT) )	p.move(Direction.LEFT);
+			if ( input.isKeyDown(Input.KEY_RIGHT) )	p.move(Direction.RIGHT);
+			return;
+		}
+
+		if( input.isKeyDown(Input.KEY_SPACE) )
 			p.jump();
+		
 		if ( p.moveIllegal(Direction.DOWN) ) {
 			if( input.isKeyDown(Input.KEY_LEFT) )	p.accelerate(Direction.LEFT, 1);
 			if( input.isKeyDown(Input.KEY_RIGHT) )	p.accelerate(Direction.RIGHT, 1);

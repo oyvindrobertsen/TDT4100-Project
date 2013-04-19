@@ -7,7 +7,7 @@ import logic.Player;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class Level {
-	private boolean[][] levelGrid;
+	private boolean[][] terrainGrid, ladderGrid;
 	private int height, width;
 	private Player p;
 	
@@ -24,15 +24,22 @@ public class Level {
 	public Level(TiledMap map) {
 		height = map.getHeight();
 		width = map.getWidth();
-		levelGrid = new boolean[height][width];
+		terrainGrid = new boolean[height][width];
+		ladderGrid = new boolean[height][width];
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				// Wall detection
 				int tileID = map.getTileId(x, y, 1);
 				String tileProp = map.getTileProperty(tileID, "name", "EMPTY");
-				levelGrid[y][x] = tileProp.equals("TERRAIN");
-				// Player detection
+				terrainGrid[y][x] = tileProp.equals("TERRAIN");
+				
+				// Ladder detection
 				tileID = map.getTileId(x, y, 2);
+				tileProp = map.getTileProperty(tileID, "name", "EMPTY");
+				ladderGrid[y][x] = tileProp.equals("LADDER");
+				
+				// Player detection
+				tileID = map.getTileId(x, y, 3);
 				tileProp = map.getTileProperty(tileID, "name", "EMPTY");
 				if (tileProp.equals("PLAYER"))
 					p = new Player(new Point2d(x*32+15, y*32+15), this);
@@ -41,7 +48,11 @@ public class Level {
 	}
 
 	public boolean isBlocked(int i, int j) {
-		return levelGrid[(int)i/32][(int)j/32];
+		return terrainGrid[(int)i/32][(int)j/32];
+	}
+
+	public boolean isLadder(int i, int j) {
+		return ladderGrid[(int)i/32][(int)j/32];
 	}
 	
 	public Player getPlayer() {
@@ -52,7 +63,7 @@ public class Level {
 		String tempStr = "";
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				tempStr += (levelGrid[y][x]) ? "1 " : "0 ";
+				tempStr += (terrainGrid[y][x]) ? "1 " : "0 ";
 			}
 			tempStr += "\n";
 		}

@@ -72,6 +72,11 @@
     <property name="name" value="PLAYER"/>
    </properties>
   </tile>
+  <tile id="1512">
+   <properties>
+    <property name="name" value="LADDER"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="10001" name="background" tilewidth="800" tileheight="600">
   <image source="sky1.png" width="1920" height="1200"/>
@@ -83,7 +88,12 @@
  </layer>
  <layer name="TERRAIN" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMJjBV0YIfRqIzwDxWSA+hyZHqdmRTBBaH8g3AGJDIDZCkiPHHnSz9zLhVguSw2YPyM8g/55BotHZZ4hUAxNDFj+H5mdkbIAkboBFDF0dOobJgcIRAAAXJXA=
+   eJxjYBgF6OA0EJ8B4rNAfI5GdugzMjAYALEhEBsxUmbWqHsxwUh27ygYfuArNE1gS4tfKUwvMP2RTBAaW1oEyZFjD7rZe5lwqwXJYbMH5GeQf88g0ejsM0SqgYkhi59D8zMyNkASN8Aihq4OHcPkQOEIAMWVNVA=
+  </data>
+ </layer>
+ <layer name="LADDER" width="25" height="19">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAdeMlKQ8NH7Ri1Y9SOUTtGuB3YzBu1Y3ACANjHEpk=
   </data>
  </layer>
  <layer name="PLAYER" width="25" height="19" visible="0">
