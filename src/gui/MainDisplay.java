@@ -33,12 +33,13 @@ public class MainDisplay extends BasicGame {
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		// General map rendering
-		map.render(0, 0, 0);
-		map.render(0, 0, 1);
-		map.render(0, 0, 2);
+		map.render(0, 0, 0); // Background
+		map.render(0, 0, 1); // Terrain
+		map.render(0, 0, 2); // Ladders
+		map.render(0, 0, 3); // Inventory Objects
 		
 		// Player rendering
-		playerImage.draw( (float)p.getCorners()[0].x, (float)p.getCorners()[0].y );
+		playerImage.draw( (float)p.getCorners()[0].x, (float)p.getCorners()[0].y ); // Layer 4 in .tmx
 	}
 
 	@Override
@@ -64,6 +65,9 @@ public class MainDisplay extends BasicGame {
 			if ( input.isKeyDown(Input.KEY_RIGHT) )	p.move(Direction.RIGHT);
 			return;
 		}
+		
+		if ( p.onObject() )
+			if ( input.isKeyDown(Input.KEY_E) ) 	p.pickupObject();
 
 		if( input.isKeyDown(Input.KEY_SPACE) )
 			p.jump();

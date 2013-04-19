@@ -42,6 +42,11 @@
     <property name="name" value="TERRAIN"/>
    </properties>
   </tile>
+  <tile id="306">
+   <properties>
+    <property name="name" value="TESTOBJ"/>
+   </properties>
+  </tile>
   <tile id="500">
    <properties>
     <property name="name" value="TERRAIN"/>
@@ -94,6 +99,11 @@
  <layer name="LADDER" width="25" height="19">
   <data encoding="base64" compression="zlib">
    eJxjYKAdeMlKQ8NH7Ri1Y9SOUTtGuB3YzBu1Y3ACANjHEpk=
+  </data>
+ </layer>
+ <layer name="INVOBJ" width="25" height="19">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMAqoB4wZB9oFgw8AAD97ADU=
   </data>
  </layer>
  <layer name="PLAYER" width="25" height="19" visible="0">

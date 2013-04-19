@@ -1,11 +1,14 @@
 package logic;
 
-import map.Tile;
-
-public abstract class WorldObject extends Tile{
+public abstract class WorldObject {
+	
+	private String name;
 
 	public WorldObject(String objectName) {
-		super(objectName);
+		this.name = objectName;
 	}
 	
+	public String toString() {
+		return name;
+	}
 }

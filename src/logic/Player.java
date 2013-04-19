@@ -14,6 +14,7 @@ public class Player {
 	private Point2d [] cornerList = new Point2d[4]; // A list containing the four cornerpoints of the user-tile
 	private int health;
 	private Level currentLevel;
+	private Inventory inv;
 
 	private double velocityX, velocityY;
 	
@@ -25,6 +26,7 @@ public class Player {
 		health = 100;
 		velocityX = 0;
 		velocityY = 0;
+		inv = new Inventory();
 	}
 	
 	private void updateCornerlist() {
@@ -119,6 +121,18 @@ public class Player {
 
 	public boolean onLadder() {
 		return currentLevel.isLadder( (int)position.y+15, (int)position.x );
+	}
+	
+	// Interaction
+	
+	public boolean onObject() {
+		return currentLevel.isOnObject((int)position.y, (int)position.x);
+	}
+	
+	public void pickupObject() {
+		inv.addItem(currentLevel.getInvObj((int)position.y, (int)position.x));
+		currentLevel.removeObject((int)position.y, (int)position.x);
+		System.out.println(inv);
 	}
 
 }
