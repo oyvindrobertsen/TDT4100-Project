@@ -40,7 +40,7 @@ public class MainDisplay extends BasicGame {
 		//map.render(0, 0, 2);
 		
 		// Player rendering
-		playerImage.draw((float)p.getCorners()[0].x, (float)p.getCorners()[0].y);
+		playerImage.draw( (float)p.getCorners()[0].x, (float)p.getCorners()[0].y );
 	}
 
 	@Override
@@ -50,6 +50,7 @@ public class MainDisplay extends BasicGame {
 		p = state.getLevel().getPlayer();
 		playerImage = new Image("res/pubdlcnt.png");
 		input = gc.getInput();
+		gc.setTargetFrameRate(60);
 		
 		System.out.println(state.getLevel().toString());
 		
@@ -57,9 +58,12 @@ public class MainDisplay extends BasicGame {
 
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
-		if( input.isKeyDown(Input.KEY_UP) || input.isKeyDown(Input.KEY_SPACE)	) p.jump();
-		if( input.isKeyDown(Input.KEY_LEFT)    	) p.accelerate(Direction.LEFT, 1.5);
-		if( input.isKeyDown(Input.KEY_RIGHT)	) p.accelerate(Direction.RIGHT, 1.5);
+		if( input.isKeyDown(Input.KEY_UP) || input.isKeyDown(Input.KEY_SPACE) )
+			p.jump();
+		if( input.isKeyDown(Input.KEY_LEFT)    	)
+			p.accelerate(Direction.LEFT, 1);
+		if( input.isKeyDown(Input.KEY_RIGHT)	)
+			p.accelerate(Direction.RIGHT, 1);
 
 		p.gravitate();
 		p.friction();
@@ -71,7 +75,7 @@ public class MainDisplay extends BasicGame {
 	}
 	
 	public static void main(String[] args) throws SlickException {
-		AppGameContainer app = new AppGameContainer(new MainDisplay("PlatformGame"));
+		AppGameContainer app = new AppGameContainer( new MainDisplay("PlatformGame") );
 		app.setDisplayMode(WIDTH, HEIGHT, false); 
 		app.start();
 	}
@@ -80,6 +84,4 @@ public class MainDisplay extends BasicGame {
 		if (key == Input.KEY_ESCAPE)
 			System.exit(0);
 	}
-
-
 }
