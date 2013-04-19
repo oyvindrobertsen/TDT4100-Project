@@ -80,8 +80,8 @@ public class Player {
 	
 	public void move(Direction dir) {
 		if ( moveIllegal(dir) ) return;
-		this.position.x += dir.dx();
-		this.position.y += dir.dy();
+		this.position.x += dir.dx()*2;
+		this.position.y += dir.dy()*2;
 		updateCornerlist();
 	}
 	

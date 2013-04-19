@@ -50,6 +50,7 @@ public class MainDisplay extends BasicGame {
 		p = state.getLevel().getPlayer();
 		playerImage = new Image("res/pubdlcnt.png");
 		input = gc.getInput();
+		gc.setTargetFrameRate(60);
 		
 		System.out.println(state.getLevel().toString());
 		
@@ -60,9 +61,9 @@ public class MainDisplay extends BasicGame {
 		if( input.isKeyDown(Input.KEY_UP) || input.isKeyDown(Input.KEY_SPACE) )
 			p.jump();
 		if( input.isKeyDown(Input.KEY_LEFT)    	)
-			p.accelerate(Direction.LEFT, .1);
+			p.accelerate(Direction.LEFT, 1);
 		if( input.isKeyDown(Input.KEY_RIGHT)	)
-			p.accelerate(Direction.RIGHT, .1);
+			p.accelerate(Direction.RIGHT, 1);
 
 		p.gravitate();
 		p.friction();
