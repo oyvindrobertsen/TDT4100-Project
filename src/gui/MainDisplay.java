@@ -1,7 +1,5 @@
 package gui;
 
-import javax.print.DocFlavor.INPUT_STREAM;
-
 import map.Level;
 
 import logic.Direction;
