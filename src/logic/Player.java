@@ -73,15 +73,19 @@ public class Player {
 		for (int i = 0; i < 4; i++) {
 			int nextX = (int)cornerList[i].x + dir.dx();
 			int nextY = (int)cornerList[i].y + dir.dy();
-			if ( ( currentLevel.isBlocked(nextY, nextX) ) || nextY < 0 || nextY > 600 || nextX < 0 || nextX > 798 ) return true;
+			try {
+				if ( ( currentLevel.isBlocked(nextY, nextX) ) || nextY < 0 || nextY > 600 || nextX < 0 || nextX > 800 ) return true;
+			} catch (Exception e) {
+				return true;
+			}
 		}
 		return false;
 	}
 	
 	public void move(Direction dir) {
 		if ( moveIllegal(dir) ) return;
-		this.position.x += dir.dx()*2;
-		this.position.y += dir.dy()*2;
+		this.position.x += dir.dx();
+		this.position.y += dir.dy();
 		updateCornerlist();
 	}
 	
