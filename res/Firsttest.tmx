@@ -86,6 +86,19 @@
  <tileset firstgid="10001" name="background" tilewidth="800" tileheight="600">
   <image source="sky1.png" width="1920" height="1200"/>
  </tileset>
+ <tileset firstgid="10005" name="objects" tilewidth="32" tileheight="32">
+  <image source="objects.png" width="512" height="512"/>
+  <tile id="0">
+   <properties>
+    <property name="name" value="APPLE"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="name" value="ORANGE"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="BACKGROUND" width="25" height="19">
   <data encoding="base64" compression="zlib">
    eJzFzVVXlFEYxfHzFmDLgB14JXYAtgJ2fgY7B2wdsPMKuwYs1AE7PwN2Ddg6YOdnwPy7znluZr3jWlyoZ63f1bPP3kr9vxdAGtLRCq3RBm3RDu3RAR3RCZ2RgS4N6AuhyNwCCTIN2ZS+YqzCasRQa26hBJk1WIt1WI8N2IhN2Iwt2Go2pK8OL/EKuZZSeZa+xRJkXuMN3uId3uMDPuITPuOL2ZC+fIzEKERQYembiM+MxhiMxTiMxwRMxCRMxhRLb0hfJU7iFJJspZJtfYtY/pnTOIOzOIfzuICLuITLuGI2pC8FjdAYQRTY+ibiM03QFM3QHC3QEqkIIA3ptt6QvkIsxCJEUW22grZ/ZjGWYCmWYTlWYCVCKEKx2ZC+GjzAQ2Q5SmU7+ha1/TOP8BhP8BTP8BwvEEMt6syG9OVgAAYijFJH30R8ZhAGYwiGYhiGYwRykYd8R29IXxkO4hDq8dVshR3/zGEcwVGU4xiO4wQiqECl2ZC+b/iOH5jqKjXN1bd6xz/z8/d/MhZsOHDhIQnJSHH1hvRNxwzMRBWuuvom4jOzMBtzMBfzMB8LEEQBCs2G9F3DddxAV0+pTE/fqlz/zE3cwm3cwV3cw31EUY0asyF93dAdPVCCbZ6+ifhMT/RCb/RBX/RDf2QhGzme3pC+7diBndiF3WarxPtzZg/2Yh/24wDCKEUZUjPVX3//YuMXjSqtuQ==
@@ -103,7 +116,7 @@
  </layer>
  <layer name="INVOBJ" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMAqoB4wZB9oFgw8AAD97ADU=
+   eJxjYBgFo2AUjIJRQC4QVYfQYuqomJpm0wLQ0uxRgAkASsABqQ==
   </data>
  </layer>
  <layer name="PLAYER" width="25" height="19" visible="0">

@@ -50,6 +50,7 @@ public class MainDisplay extends BasicGame {
 		playerImage = new Image("res/pubdlcnt.png");
 		input = gc.getInput();
 		gc.setTargetFrameRate(60);
+		gc.setShowFPS(false);
 		
 		System.out.println(state.getLevel().toString());
 		
