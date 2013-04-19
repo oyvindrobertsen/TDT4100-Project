@@ -28,10 +28,10 @@ public class Player {
 	}
 	
 	private void updateCornerlist() {
-		cornerList[0] = new Point2d(position.x-16, position.y-16); // Upper left
-		cornerList[1] = new Point2d(position.x-16, position.y+16); // Lower left
-		cornerList[2] = new Point2d(position.x+16, position.y-16); // Upper right
-		cornerList[3] = new Point2d(position.x+16, position.y+16); // Lower right
+		cornerList[0] = new Point2d(position.x-15, position.y-15); // Upper left
+		cornerList[1] = new Point2d(position.x-15, position.y+15); // Lower left
+		cornerList[2] = new Point2d(position.x+15, position.y-15); // Upper right
+		cornerList[3] = new Point2d(position.x+15, position.y+15); // Lower right
 	}
 	
 	// Getters
@@ -69,7 +69,7 @@ public class Player {
 
 	// Movement
 
-	private boolean moveIllegal( Direction dir ) {
+	public boolean moveIllegal( Direction dir ) {
 		for (int i = 0; i < 4; i++) {
 			int nextX = (int)cornerList[i].x + dir.dx();
 			int nextY = (int)cornerList[i].y + dir.dy();
@@ -91,7 +91,7 @@ public class Player {
 	
 	public void jump(){
 		if( !moveIllegal( Direction.DOWN ) || moveIllegal( Direction.UP ) ) return;
-		accelerate(Direction.UP, 16);
+		accelerate(Direction.UP, 12);
 	}
 
 	public void accelerate(Direction dir, double magnitude) {
@@ -108,16 +108,16 @@ public class Player {
 	}
 
 	public void gravitate() {
-		if ( moveIllegal(Direction.DOWN) && velocityY > 0 )
+		if ( moveIllegal(Direction.DOWN) && velocityY > 0 ) {
 			velocityY = 0;
+	}
 		else
 			accelerate(Direction.DOWN, 1);
 	}
 
 	public void friction() {
-		if ( moveIllegal(Direction.DOWN) || moveIllegal(Direction.UP ) ){
+		if ( moveIllegal(Direction.DOWN) || moveIllegal(Direction.UP ) )
 			velocityX = velocityX/1.25;
-		}
 /*		if ( moveIllegal(Direction.LEFT) || moveIllegal(Direction.RIGHT) ){
 			if ( velocityY > 0 )
 				velocityY -= .5;
