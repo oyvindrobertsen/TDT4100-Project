@@ -132,7 +132,10 @@ public class Player {
 	public void pickupObject() {
 		inv.addItem(currentLevel.getInvObj((int)position.y, (int)position.x));
 		currentLevel.removeObject((int)position.y, (int)position.x);
-		System.out.println(inv);
+	}
+	
+	public Inventory getInventory() {
+		return inv;
 	}
 
 }

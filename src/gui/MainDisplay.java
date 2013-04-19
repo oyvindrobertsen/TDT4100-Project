@@ -68,7 +68,8 @@ public class MainDisplay extends BasicGame {
 		
 		if ( p.onObject() )
 			if ( input.isKeyDown(Input.KEY_E) ) 	p.pickupObject();
-
+		
+		if (input.isKeyDown(Input.KEY_I))			System.out.println(p.getInventory());
 		if( input.isKeyDown(Input.KEY_SPACE) )
 			p.jump();
 		
@@ -78,6 +79,8 @@ public class MainDisplay extends BasicGame {
 		}
 
 		p.applyForces();
+		
+		
 		
 		for ( int i = 0; i < Math.abs( (int)p.getVelocityX() ); i++) {
 			if( p.getVelocityX() > 0 )
