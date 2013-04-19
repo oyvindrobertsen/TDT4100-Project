@@ -60,18 +60,32 @@ public class MainDisplay extends BasicGame {
 	public void update(GameContainer gc, int delta) throws SlickException {
 		if( input.isKeyDown(Input.KEY_UP) || input.isKeyDown(Input.KEY_SPACE) )
 			p.jump();
-		if( input.isKeyDown(Input.KEY_LEFT)    	)
-			p.accelerate(Direction.LEFT, 1);
-		if( input.isKeyDown(Input.KEY_RIGHT)	)
-			p.accelerate(Direction.RIGHT, 1);
+		if( input.isKeyDown(Input.KEY_LEFT) )	p.accelerate(Direction.LEFT, 1);
+		if( input.isKeyDown(Input.KEY_RIGHT) )	p.accelerate(Direction.RIGHT, 1);
 
 		p.gravitate();
 		p.friction();
 		
-		if( p.getVelocityX() > 0 ) p.move(Direction.RIGHT);
-		if( p.getVelocityX() < 0 ) p.move(Direction.LEFT);
-		if( p.getVelocityY() < 0 ) p.move(Direction.UP);
-		if( p.getVelocityY() > 0 ) p.move(Direction.DOWN);
+		if( p.getVelocityX() > 0 ){
+			for ( int i = 0; i < Math.abs( (int)p.getVelocityX() ); i++) {
+				p.move(Direction.RIGHT);
+			}
+		}
+		if( p.getVelocityX() < 0 ){
+			for ( int i = 0; i < Math.abs( (int)p.getVelocityX() ); i++) {
+				p.move(Direction.LEFT);
+			}
+		}
+		if( p.getVelocityY() < 0 ){
+			for ( int i = 0; i < Math.abs( (int)p.getVelocityY() ); i++) {
+				p.move(Direction.UP);
+			}
+		}
+		if( p.getVelocityY() > 0 ){
+			for ( int i = 0; i < Math.abs( (int)p.getVelocityY() ); i++) {
+				p.move(Direction.DOWN);
+			}
+		}
 	}
 	
 	public static void main(String[] args) throws SlickException {

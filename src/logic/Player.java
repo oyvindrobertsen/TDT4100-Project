@@ -91,7 +91,7 @@ public class Player {
 	
 	public void jump(){
 		if( !moveIllegal( Direction.DOWN ) || moveIllegal( Direction.UP ) ) return;
-		accelerate(Direction.UP, 64);
+		accelerate(Direction.UP, 16);
 	}
 
 	public void accelerate(Direction dir, double magnitude) {
@@ -108,13 +108,15 @@ public class Player {
 	}
 
 	public void gravitate() {
-		accelerate(Direction.DOWN, 1);
+		if ( moveIllegal(Direction.DOWN) && velocityY > 0 )
+			velocityY = 0;
+		else
+			accelerate(Direction.DOWN, 1);
 	}
 
 	public void friction() {
-		if ( moveIllegal(Direction.DOWN) || moveIllegal(Direction.UP) ){
-			if ( velocityX != 0 )
-				velocityX = (Math.abs(velocityX) > .01) ? velocityX/10 : 0;
+		if ( moveIllegal(Direction.DOWN) || moveIllegal(Direction.UP ) ){
+			velocityX = velocityX/1.25;
 		}
 /*		if ( moveIllegal(Direction.LEFT) || moveIllegal(Direction.RIGHT) ){
 			if ( velocityY > 0 )
