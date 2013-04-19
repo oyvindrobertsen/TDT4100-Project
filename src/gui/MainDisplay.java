@@ -60,17 +60,15 @@ public class MainDisplay extends BasicGame {
 	public void update(GameContainer gc, int delta) throws SlickException {
 		
 		if ( p.onLadder() ){
-			if ( input.isKeyDown(Input.KEY_UP) )	p.move(Direction.UP);
-			if ( input.isKeyDown(Input.KEY_DOWN) )	p.move(Direction.DOWN);
-			if ( input.isKeyDown(Input.KEY_LEFT) )	p.move(Direction.LEFT);
-			if ( input.isKeyDown(Input.KEY_RIGHT) )	p.move(Direction.RIGHT);
+			if ( input.isKeyDown(Input.KEY_UP) )	p.move(Direction.UP, 2);
+			if ( input.isKeyDown(Input.KEY_DOWN) )	p.move(Direction.DOWN, 2);
+			if ( input.isKeyDown(Input.KEY_LEFT) )	p.move(Direction.LEFT, 1);
+			if ( input.isKeyDown(Input.KEY_RIGHT) )	p.move(Direction.RIGHT, 1);
 			return;
 		}
 		
-		if ( p.onObject() )
-			if ( input.isKeyDown(Input.KEY_E) ) 	p.pickupObject();
+		if ( p.onObject() && input.isKeyDown(Input.KEY_E) ) 	p.pickupObject();
 		
-		if (input.isKeyDown(Input.KEY_I))			System.out.println(p.getInventory());
 		if( input.isKeyDown(Input.KEY_SPACE) )
 			p.jump();
 		
@@ -81,20 +79,19 @@ public class MainDisplay extends BasicGame {
 
 		p.applyForces();
 		
-		
-		
 		for ( int i = 0; i < Math.abs( (int)p.getVelocityX() ); i++) {
 			if( p.getVelocityX() > 0 )
-				p.move(Direction.RIGHT);
+				p.move(Direction.RIGHT, 1);
 			if( p.getVelocityX() < 0 )
-				p.move(Direction.LEFT);
+				p.move(Direction.LEFT, 1);
 		}
+
 		for ( int i = 0; i < Math.abs( (int)p.getVelocityY() ); i++) {
 			if( p.getVelocityY() < 0 )
-				p.move(Direction.UP);
+				p.move(Direction.UP, 1);
 			if( p.getVelocityY() > 0 )
-				p.move(Direction.DOWN);
-			}
+				p.move(Direction.DOWN, 1);
+		}
 	}
 	
 	public static void main(String[] args) throws SlickException {
@@ -106,5 +103,9 @@ public class MainDisplay extends BasicGame {
 	public void keyPressed( int key, char c ) {
 		if (key == Input.KEY_ESCAPE)
 			System.exit(0);
+		
+		if (key == Input.KEY_I)
+			System.out.println(p.getInventory());
+
 	}
 }

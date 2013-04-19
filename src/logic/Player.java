@@ -84,10 +84,10 @@ public class Player {
 		return false;
 	}
 	
-	public void move(Direction dir) {
+	public void move(Direction dir, int magnitude) {
 		if ( moveIllegal(dir) ) return;
-		this.position.x += dir.dx();
-		this.position.y += dir.dy();
+		this.position.x += dir.dx() * magnitude;
+		this.position.y += dir.dy() * magnitude;
 		updateCornerlist();
 	}
 	
@@ -97,8 +97,8 @@ public class Player {
 	}
 
 	public void accelerate( Direction dir, double magnitude ) {
-		velocityX += magnitude*dir.dx();
-		velocityY += magnitude*dir.dy();
+		velocityX += magnitude * dir.dx();
+		velocityY += magnitude * dir.dy();
 	}
 
 	public double getVelocityX() {

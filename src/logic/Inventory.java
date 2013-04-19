@@ -13,9 +13,9 @@ public class Inventory {
 	}
 	
 	public String toString() {
-		String out = "";
+		String out = "Inventory:\t";
 		for (InventoryObject i : items) {
-			out += i;
+			out += i + "\t";
 		}
 		return out;
 	}
