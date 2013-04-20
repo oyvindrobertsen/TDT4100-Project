@@ -8,12 +8,15 @@ import logic.Player;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.fills.GradientFill;
 import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.geom.Rectangle;
 
 
 public class MainDisplay extends BasicGame {
@@ -24,7 +27,7 @@ public class MainDisplay extends BasicGame {
 	private static final int HEIGHT = 600;
 	private GameState state;
 	private Player p;
-	private Image playerImage;
+	private Image playerImage, healthBar, healthImage;
 
 	public MainDisplay(String title) {
 		super(title);
@@ -40,6 +43,10 @@ public class MainDisplay extends BasicGame {
 
 		// Player rendering
 		playerImage.draw( (float)p.getCorners()[0].x, (float)p.getCorners()[0].y ); // Layer 4 in .tmx
+		
+		// UI
+		healthBar.draw(10, 10);
+		healthImage.draw(11,12, (float)(326*((double)p.getHealth()/300.0)), 12);
 	}
 
 	@Override
@@ -54,6 +61,8 @@ public class MainDisplay extends BasicGame {
 		// UI
 		gc.setTargetFrameRate(60);
 		gc.setShowFPS(false);
+		healthBar = new Image("res/bar_empty.png"); // Health bar background
+		healthImage = new Image("res/health.png");
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import map.Level;
 
 public class Player {
 	// CONSTs
-	private static final int MAX_HEALTH = 300;
+	static final int MAX_HEALTH = 300;
 
 	// Fields
 	private Point2d position;	   // A players current pixel position (center of tile)

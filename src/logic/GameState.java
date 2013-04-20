@@ -6,7 +6,6 @@ public class GameState {
 	private Level currentLevel;
 
 	public GameState() {
-		return;
 	}
 
 	public GameState(Level level) {
