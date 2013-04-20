@@ -109,4 +109,8 @@ public class Level {
 	public TileCoordinate getGoal() {
 		return goalTile;
 	}
+	
+	public TiledMap getMap() {
+		return map;
+	}
 }

@@ -42,6 +42,7 @@ public class MainDisplay extends BasicGame {
 		map.render(0, 0, 1); // Terrain
 		map.render(0, 0, 2); // Ladders
 		map.render(0, 0, 3); // Inventory Objects
+		map.render(0, 0, 4); // Goal
 
 		// Player rendering
 		playerImage.draw( (float)p.getCorners()[0].x, (float)p.getCorners()[0].y ); // Layer 4 in .tmx
@@ -71,6 +72,8 @@ public class MainDisplay extends BasicGame {
 
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
+		map = state.getLevel().getMap();
+		p = state.getLevel().getPlayer();
 
 		if ( p.onLadder() ){
 			if ( input.isKeyDown(Input.KEY_UP) )	p.move(Direction.UP, 2);
@@ -93,9 +96,9 @@ public class MainDisplay extends BasicGame {
 		p.applyForces();
 		p.movement();
 		
-		System.out.println(p.getTilePos().toString());
-		
-		if ( p.getTilePos().toString().equals( goalTile.toString() ) ) System.out.println("WIN");
+		if ( p.getTilePos().toString().equals( goalTile.toString() ) && (input.isKeyDown(Input.KEY_E)) ) {
+			state.loadNextLevel();
+		}
 	}
 
 	public static void main(String[] args) throws SlickException {

@@ -13,6 +13,7 @@ public class Player {
 	private Point2d position;	   // A players current pixel position (center of tile)
 	private TileCoordinate tilePosition;	// the position of the player (center) in the tile grid
 	private Point2d [] cornerList = new Point2d[4]; // A list containing the four cornerpoints of the user-tile
+	private Point2d startPosition;
 	private int health;
 	private Level currentLevel;
 	private Inventory inv;
@@ -23,6 +24,7 @@ public class Player {
 	public Player(Point2d position, Level currentLevel) {
 		this.currentLevel = currentLevel;
 		this.position = position;
+		this.startPosition = position;
 		tilePosition = new TileCoordinate( position );
 		updateCornerlist();
 		health = 100;
@@ -51,6 +53,9 @@ public class Player {
 		return cornerList;
 	}
 
+	public Point2d getStartPos() {
+		return startPosition;
+	}
 	// Setters
 	public void setHealth(int health) {
 		if ( health > 0 && health <= MAX_HEALTH )
@@ -69,6 +74,10 @@ public class Player {
 			this.health -= dHealth;
 		else if (dHealth > 0)
 			this.health = 0;
+	}
+	
+	public void setPos() {
+		
 	}
 
 	// Movement
@@ -90,7 +99,6 @@ public class Player {
 		if ( collision(dir) ) {
 			if (velocityX > 20 || velocityY > 20) {
 				decreaseHealth(3);
-				System.out.println("Health: " + this.health);
 			}
 			return;
 		}
@@ -168,5 +176,4 @@ public class Player {
 	public TileCoordinate getTilePos() {
 		return tilePosition;
 	}
-
 }
