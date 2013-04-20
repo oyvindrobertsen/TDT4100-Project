@@ -10,7 +10,8 @@ public class Player {
 	private static final int MAX_HEALTH = 300;
 
 	// Fields
-	private Point2d position;	   // A players current position (center of tile)
+	private Point2d position;	   // A players current pixel position (center of tile)
+	private TileCoordinate tilePosition;	// the position of the player (center) in the tile grid
 	private Point2d [] cornerList = new Point2d[4]; // A list containing the four cornerpoints of the user-tile
 	private int health;
 	private Level currentLevel;
@@ -22,6 +23,7 @@ public class Player {
 	public Player(Point2d position, Level currentLevel) {
 		this.currentLevel = currentLevel;
 		this.position = position;
+		tilePosition = new TileCoordinate(position.x, position.y);
 		updateCornerlist();
 		health = 100;
 		velocityX = 0;
@@ -84,7 +86,7 @@ public class Player {
 		return false;
 	}
 
-	public void move(Direction dir, int magnitude) {
+	public void move(Direction dir, int pixels) {
 		if ( collision(dir) ) {
 			if (velocityX > 20 || velocityY > 20) {
 				decreaseHealth(3);
@@ -92,9 +94,11 @@ public class Player {
 			}
 			return;
 		}
-		this.position.x += dir.dx() * magnitude;
-		this.position.y += dir.dy() * magnitude;
+
+		this.position.x += dir.dx() * pixels;
+		this.position.y += dir.dy() * pixels;
 		updateCornerlist();
+		tilePosition = new TileCoordinate(position.x, position.y);
 	}
 
 	public void jump(){
@@ -121,7 +125,7 @@ public class Player {
 		else
 			accelerate(Direction.DOWN, 1);
 
-		if ( collision(Direction.DOWN) || collision(Direction.UP ) )
+		if ( collision(Direction.DOWN) || collision(Direction.UP) )
 			velocityX = velocityX/1.25;
 	}
 
@@ -132,13 +136,12 @@ public class Player {
 	// Interaction
 
 	public boolean onObject() {
-		return currentLevel.isOnObject( new TileCoordinate(position.x, position.y) );
+		return currentLevel.isOnObject( tilePosition );
 	}
 
 	public void pickupObject() {
-		TileCoordinate c = new TileCoordinate(position.x, position.y);
-		inv.addItem( currentLevel.getInvObj( c ) );
-		currentLevel.removeObject( c );
+		inv.addItem( currentLevel.getInvObj( tilePosition ) );
+		currentLevel.removeObject( tilePosition );
 	}
 
 	public Inventory getInventory() {
