@@ -17,7 +17,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 
 public class MainDisplay extends BasicGame {
-	
+
 	private TiledMap map;
 	private Input input;
 	private static final int WIDTH = 800;
@@ -37,7 +37,7 @@ public class MainDisplay extends BasicGame {
 		map.render(0, 0, 1); // Terrain
 		map.render(0, 0, 2); // Ladders
 		map.render(0, 0, 3); // Inventory Objects
-		
+
 		// Player rendering
 		playerImage.draw( (float)p.getCorners()[0].x, (float)p.getCorners()[0].y ); // Layer 4 in .tmx
 	}
@@ -51,13 +51,13 @@ public class MainDisplay extends BasicGame {
 		input = gc.getInput();
 		gc.setTargetFrameRate(60);
 		gc.setShowFPS(false);
-		
+
 		System.out.println(state.getLevel().toString());
 	}
 
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
-		
+
 		if ( p.onLadder() ){
 			if ( input.isKeyDown(Input.KEY_UP) )	p.move(Direction.UP, 2);
 			if ( input.isKeyDown(Input.KEY_DOWN) )	p.move(Direction.DOWN, 2);
@@ -65,19 +65,19 @@ public class MainDisplay extends BasicGame {
 			if ( input.isKeyDown(Input.KEY_RIGHT) )	p.move(Direction.RIGHT, 1);
 			return;
 		}
-		
+
 		if ( p.onObject() && input.isKeyDown(Input.KEY_E) ) 	p.pickupObject();
-		
+
 		if( input.isKeyDown(Input.KEY_SPACE) )
 			p.jump();
-		
+
 		if ( p.collision(Direction.DOWN) ) {
 			if( input.isKeyDown(Input.KEY_LEFT) )	p.accelerate(Direction.LEFT, 1);
 			if( input.isKeyDown(Input.KEY_RIGHT) )	p.accelerate(Direction.RIGHT, 1);
 		}
 
 		p.applyForces();
-		
+
 		for ( int i = 0; i < Math.abs( (int)p.getVelocityX() ); i++) {
 			if( p.getVelocityX() > 0 )
 				p.move(Direction.RIGHT, 1);
@@ -92,17 +92,17 @@ public class MainDisplay extends BasicGame {
 				p.move(Direction.DOWN, 1);
 		}
 	}
-	
+
 	public static void main(String[] args) throws SlickException {
 		AppGameContainer app = new AppGameContainer( new MainDisplay("PlatformGame") );
 		app.setDisplayMode(WIDTH, HEIGHT, false); 
 		app.start();
 	}
-	
+
 	public void keyPressed( int key, char c ) {
 		if (key == Input.KEY_ESCAPE)
 			System.exit(0);
-		
+
 		if (key == Input.KEY_I)
 			System.out.println(p.getInventory());
 
