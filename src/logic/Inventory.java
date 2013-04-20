@@ -45,4 +45,8 @@ public class Inventory {
 			if (sorted) break;
 		}
 	}
+	
+	public void clear() {
+		items.clear();
+	}
 }

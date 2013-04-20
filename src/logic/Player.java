@@ -13,7 +13,6 @@ public class Player {
 	private Point2d position;	   // A players current pixel position (center of tile)
 	private TileCoordinate tilePosition;	// the position of the player (center) in the tile grid
 	private Point2d [] cornerList = new Point2d[4]; // A list containing the four cornerpoints of the user-tile
-	private Point2d startPosition;
 	private int health;
 	private Level currentLevel;
 	private Inventory inventory;
@@ -24,7 +23,6 @@ public class Player {
 	public Player( Point2d position, Level currentLevel ) {
 		this.currentLevel = currentLevel;
 		this.position = position;
-		this.startPosition = position;
 		tilePosition = new TileCoordinate( position );
 		updateCornerlist();
 		health = 100;
@@ -51,10 +49,6 @@ public class Player {
 
 	public Point2d[] getCorners() {
 		return cornerList;
-	}
-
-	public Point2d getStartPosition() {
-		return startPosition;
 	}
 
 	// Setters
@@ -128,7 +122,10 @@ public class Player {
 	public double getVelocityY() {
 		return velocityY;
 	}
-
+	
+	public boolean dead() {
+		return health == 0;
+	}
 	public void applyForces() {
 		if ( onLadder() || ( collision(Direction.DOWN) && velocityY > 0 ) )
 			velocityY = 0;
@@ -157,6 +154,10 @@ public class Player {
 	public Inventory getInventory() {
 		return inventory;
 	}
+	
+	public void clearInventory() {
+		inventory.clear();
+	}
 
 	public void movement() {
 		for ( int i = 0; i < Math.abs( (int)getVelocityX() ); i++) {
@@ -181,5 +182,10 @@ public class Player {
 
 	public void setCurrentLevel(Level arg) {
 		this.currentLevel = arg;
+	}
+	
+	public void stop() {
+		this.velocityX = 0;
+		this.velocityY = 0;
 	}
 }

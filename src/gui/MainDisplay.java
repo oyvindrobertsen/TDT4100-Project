@@ -22,7 +22,7 @@ public class MainDisplay extends BasicGame {
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
 	private GameState state;
-	private Player p;
+	private Player player;
 	private Image playerImage, healthBar, healthImage;
 	private Object goalTile;
 
@@ -40,11 +40,11 @@ public class MainDisplay extends BasicGame {
 		map.render(0, 0, 4); // Goal
 
 		// Player rendering
-		playerImage.draw( (float)p.getCorners()[0].x, (float)p.getCorners()[0].y ); // Layer 4 in .tmx
+		playerImage.draw( (float)player.getCorners()[0].x, (float)player.getCorners()[0].y ); // Layer 4 in .tmx
 		
 		// UI
 		healthBar.draw(10, 10);
-		healthImage.draw(11,12, (float)(326*((double)p.getHealth()/300.0)), 12);
+		healthImage.draw(11,12, (float)(326*((double)player.getHealth()/300.0)), 12);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class MainDisplay extends BasicGame {
 		// Game essential stuff 
 		map = new TiledMap("res/Firsttest.tmx");
 		state = new GameState(new Level(map));
-		p = state.getLevel().getPlayer();
+		player = state.getLevel().getPlayer();
 		playerImage = new Image("res/pubdlcnt.png");
 		input = gc.getInput();
 		
@@ -68,31 +68,35 @@ public class MainDisplay extends BasicGame {
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
 		map = state.getLevel().getMap();
-		p = state.getLevel().getPlayer();
+		player = state.getLevel().getPlayer();
+		
+		if (player.dead()) {
+			state.getLevel().reloadLevel();
+		}
 
-		if ( p.onLadder() ){
-			if ( input.isKeyDown(Input.KEY_UP) )	p.move(Direction.UP, 2);
-			if ( input.isKeyDown(Input.KEY_DOWN) )	p.move(Direction.DOWN, 2);
-			if ( input.isKeyDown(Input.KEY_LEFT) )	p.move(Direction.LEFT, 1);
-			if ( input.isKeyDown(Input.KEY_RIGHT) )	p.move(Direction.RIGHT, 1);
+		if ( player.onLadder() ){
+			if ( input.isKeyDown(Input.KEY_UP) )	player.move(Direction.UP, 2);
+			if ( input.isKeyDown(Input.KEY_DOWN) )	player.move(Direction.DOWN, 2);
+			if ( input.isKeyDown(Input.KEY_LEFT) )	player.move(Direction.LEFT, 1);
+			if ( input.isKeyDown(Input.KEY_RIGHT) )	player.move(Direction.RIGHT, 1);
 			return;
 		}
 
-		if ( p.onObject() && input.isKeyDown(Input.KEY_E) ) 	p.pickupObject();
+		if ( player.onObject() && input.isKeyDown(Input.KEY_E) ) 	player.pickupObject();
 
 		if( input.isKeyDown(Input.KEY_SPACE) )
-			p.jump();
+			player.jump();
 
-		if ( p.collision(Direction.DOWN) ) {
-			if( input.isKeyDown(Input.KEY_LEFT) )	p.accelerate(Direction.LEFT, 1);
-			if( input.isKeyDown(Input.KEY_RIGHT) )	p.accelerate(Direction.RIGHT, 1);
+		if ( player.collision(Direction.DOWN) ) {
+			if( input.isKeyDown(Input.KEY_LEFT) )	player.accelerate(Direction.LEFT, 1);
+			if( input.isKeyDown(Input.KEY_RIGHT) )	player.accelerate(Direction.RIGHT, 1);
 		}
 
-		p.applyForces();
-		p.movement();
+		player.applyForces();
+		player.movement();
 		
-		if ( p.getTilePosition().toString().equals( goalTile.toString() ) && (input.isKeyDown(Input.KEY_E)) ) {
-			state.loadNextLevel(p);
+		if ( player.getTilePosition().toString().equals( goalTile.toString() ) && (input.isKeyDown(Input.KEY_E)) ) {
+			state.loadNextLevel(player);
 		}
 	}
 
@@ -107,7 +111,7 @@ public class MainDisplay extends BasicGame {
 			System.exit(0);
 
 		if (key == Input.KEY_I)
-			System.out.println(p.getInventory());
+			System.out.println(player.getInventory());
 
 	}
 }

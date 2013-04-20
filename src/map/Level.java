@@ -34,11 +34,11 @@ public class Level {
 		player = new Player(startPos, this);
 	}
 
-	public Level( TiledMap map, Player p ) {
+	public Level( TiledMap map, Player player ) {
 		this.map = map;
-		this.player = p;
+		this.player = player;
 		createGrid();
-		p.setPos( startPos );
+		player.setPos( startPos );
 	}
 
 	private void createGrid() {
@@ -125,5 +125,23 @@ public class Level {
 
 	public TiledMap getMap() {
 		return map;
+	}
+	
+	private Point2d findPlayer() {
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				int tileID = map.getTileId(x, y, 4);
+				String tileProp = map.getTileProperty(tileID, "name", "EMPTY");
+				if (tileProp.equals("PLAYER")) return new Point2d(x*32+15, y*32+15);
+			}
+		}
+		return new Point2d(0,0);
+	}
+	
+	public void reloadLevel() {
+		player.setPos(findPlayer());
+		player.stop();
+		player.clearInventory();
+		player.setHealth(100);
 	}
 }

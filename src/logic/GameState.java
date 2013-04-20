@@ -24,7 +24,6 @@ public class GameState {
 			currentLevel = new Level( new TiledMap("res/Firsttest2.tmx"), p );
 			p.setCurrentLevel( currentLevel );
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Unable to load requested level");
 		}
