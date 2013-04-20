@@ -87,20 +87,7 @@ public class MainDisplay extends BasicGame {
 		}
 
 		p.applyForces();
-
-		for ( int i = 0; i < Math.abs( (int)p.getVelocityX() ); i++) {
-			if( p.getVelocityX() > 0 )
-				p.move(Direction.RIGHT, 1);
-			if( p.getVelocityX() < 0 )
-				p.move(Direction.LEFT, 1);
-		}
-
-		for ( int i = 0; i < Math.abs( (int)p.getVelocityY() ); i++) {
-			if( p.getVelocityY() < 0 )
-				p.move(Direction.UP, 1);
-			if( p.getVelocityY() > 0 )
-				p.move(Direction.DOWN, 1);
-		}
+		p.movement();
 	}
 
 	public static void main(String[] args) throws SlickException {

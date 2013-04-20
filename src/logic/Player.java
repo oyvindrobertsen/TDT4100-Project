@@ -23,7 +23,7 @@ public class Player {
 	public Player(Point2d position, Level currentLevel) {
 		this.currentLevel = currentLevel;
 		this.position = position;
-		tilePosition = new TileCoordinate(position.x, position.y);
+		tilePosition = new TileCoordinate( position );
 		updateCornerlist();
 		health = 100;
 		velocityX = 0;
@@ -78,7 +78,7 @@ public class Player {
 			int nextX = (int)cornerList[i].x + dir.dx();
 			int nextY = (int)cornerList[i].y + dir.dy();
 			try {
-				if ( ( currentLevel.isBlocked( new TileCoordinate(nextX, nextY) ) ) || nextX < 0 ) return true;
+				if ( ( currentLevel.isBlocked( new TileCoordinate( new Point2d( nextX, nextY ) ) ) ) || nextX < 0 ) return true;
 			} catch ( Exception e ) {
 				return true;
 			}
@@ -86,7 +86,7 @@ public class Player {
 		return false;
 	}
 
-	public void move(Direction dir, int pixels) {
+	public void move( Direction dir, int pixels ) {
 		if ( collision(dir) ) {
 			if (velocityX > 20 || velocityY > 20) {
 				decreaseHealth(3);
@@ -98,7 +98,7 @@ public class Player {
 		this.position.x += dir.dx() * pixels;
 		this.position.y += dir.dy() * pixels;
 		updateCornerlist();
-		tilePosition = new TileCoordinate(position.x, position.y);
+		tilePosition = new TileCoordinate( position );
 	}
 
 	public void jump(){
@@ -130,7 +130,7 @@ public class Player {
 	}
 
 	public boolean onLadder() {
-		return currentLevel.isLadder( new TileCoordinate(position.x, position.y+15) );
+		return currentLevel.isLadder( new TileCoordinate( new Point2d( position.x, position.y+15 ) ) );
 	}
 
 	// Interaction
@@ -146,6 +146,23 @@ public class Player {
 
 	public Inventory getInventory() {
 		return inv;
+	}
+
+	public void movement() {
+		for ( int i = 0; i < Math.abs( (int)getVelocityX() ); i++) {
+			if( getVelocityX() > 0 )
+				move(Direction.RIGHT, 1);
+			if( getVelocityX() < 0 )
+				move(Direction.LEFT, 1);
+		}
+
+		for ( int i = 0; i < Math.abs( (int)getVelocityY() ); i++) {
+			if( getVelocityY() < 0 )
+				move(Direction.UP, 1);
+			if( getVelocityY() > 0 )
+				move(Direction.DOWN, 1);
+		}
+
 	}
 
 }

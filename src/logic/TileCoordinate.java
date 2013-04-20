@@ -1,12 +1,19 @@
 package logic;
 
+import javax.vecmath.Point2d;
+
 public class TileCoordinate {
 
 	private final int x, y;
 
-	TileCoordinate(double pixel_x, double pixel_y){
-		x = (int)pixel_x/32;
-		y = (int)pixel_y/32;
+	TileCoordinate( int x, int y ){
+		this.x = x;
+		this.y = y;
+	}
+
+	TileCoordinate( Point2d pixel_pos ){
+		x = (int)pixel_pos.x/32;
+		y = (int)pixel_pos.y/32;
 	}
 
 	public int x() {
