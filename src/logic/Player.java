@@ -165,4 +165,8 @@ public class Player {
 
 	}
 
+	public TileCoordinate getTilePos() {
+		return tilePosition;
+	}
+
 }

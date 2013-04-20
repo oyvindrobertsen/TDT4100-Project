@@ -6,12 +6,12 @@ public class TileCoordinate {
 
 	private final int x, y;
 
-	TileCoordinate( int x, int y ){
+	public TileCoordinate( int x, int y ){
 		this.x = x;
 		this.y = y;
 	}
 
-	TileCoordinate( Point2d pixel_pos ){
+	public TileCoordinate( Point2d pixel_pos ){
 		x = (int)pixel_pos.x/32;
 		y = (int)pixel_pos.y/32;
 	}
@@ -22,6 +22,10 @@ public class TileCoordinate {
 
 	public int y() {
 		return y;
+	}
+	
+	public String toString(){
+		return x + " " + y;
 	}
 
 }

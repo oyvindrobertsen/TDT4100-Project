@@ -5,6 +5,7 @@ import map.Level;
 import logic.Direction;
 import logic.GameState;
 import logic.Player;
+import logic.TileCoordinate;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -28,6 +29,7 @@ public class MainDisplay extends BasicGame {
 	private GameState state;
 	private Player p;
 	private Image playerImage, healthBar, healthImage;
+	private Object goalTile;
 
 	public MainDisplay(String title) {
 		super(title);
@@ -63,6 +65,8 @@ public class MainDisplay extends BasicGame {
 		gc.setShowFPS(false);
 		healthBar = new Image("res/bar_empty.png"); // Health bar background
 		healthImage = new Image("res/health.png");
+		
+		goalTile = new TileCoordinate( 24, 1 );
 	}
 
 	@Override
@@ -88,6 +92,10 @@ public class MainDisplay extends BasicGame {
 
 		p.applyForces();
 		p.movement();
+		
+		System.out.println(p.getTilePos().toString());
+		
+		if ( p.getTilePos().toString().equals( goalTile.toString() ) ) System.out.println("WIN");
 	}
 
 	public static void main(String[] args) throws SlickException {
