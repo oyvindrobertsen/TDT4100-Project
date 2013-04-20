@@ -14,14 +14,16 @@ public class Level {
 	private int height, width;
 	private Player p;
 	private TiledMap map;
+	private TileCoordinate goalTile;
 
 	/*
 	 * For a .tmx-file to work with our game, it must adhere to the following conventions:
 	 * 
 	 * Layer 0: Background (if no background, layer 0 must be an empty layer)
 	 * Layer 1: Terrain (Collision layer, any and all objects you want the player to collide with, should be in this layer)
-	 * Layer 2: Player-controlled character (Tells the game where the player starts when the level loads)
-	 * Layer 3: Interaction (all, in want for a better word, things the player can interact with)
+	 * Layer 2: Ladders
+	 * Layer 3: Inventory objects
+	 * Layer 4: Player-controlled character and goalpost (Tells the game where the player starts when the level loads)
 	 * 
 	 */
 
@@ -48,11 +50,13 @@ public class Level {
 				if ( (tileID = map.getTileId(x, y, 3)) != 0 )
 					invObjGrid[y][x] = new InventoryObject(map.getTileProperty(tileID, "name", "FaultyObj"));
 
-				// Player detection
+				// Player/goal detection
 				tileID = map.getTileId(x, y, 4);
 				tileProp = map.getTileProperty(tileID, "name", "EMPTY");
 				if (tileProp.equals("PLAYER"))
 					p = new Player(new Point2d(x*32+15, y*32+15), this);
+				if (tileProp.equals("GOAL"))
+					goalTile = new TileCoordinate(x, y);
 			}
 		}
 	}
@@ -100,5 +104,9 @@ public class Level {
 			tempStr += "\n";
 		}
 		return tempStr;
+	}
+
+	public TileCoordinate getGoal() {
+		return goalTile;
 	}
 }

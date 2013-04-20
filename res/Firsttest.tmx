@@ -47,6 +47,11 @@
     <property name="name" value="TERRAIN"/>
    </properties>
   </tile>
+  <tile id="206">
+   <properties>
+    <property name="name" value="GOAL"/>
+   </properties>
+  </tile>
   <tile id="302">
    <properties>
     <property name="name" value="TERRAIN"/>
@@ -151,7 +156,7 @@
  </layer>
  <layer name="PLAYER" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMArIA69YB9oFQwMAABvOAPA=
+   eJxjYBgFo2AUjIJRMArIA69YaWPuedoYO2AAAMP+Ab8=
   </data>
  </layer>
 </map>

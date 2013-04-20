@@ -66,7 +66,7 @@ public class MainDisplay extends BasicGame {
 		healthBar = new Image("res/bar_empty.png"); // Health bar background
 		healthImage = new Image("res/health.png");
 		
-		goalTile = new TileCoordinate( 24, 1 );
+		goalTile = state.getLevel().getGoal();
 	}
 
 	@Override
