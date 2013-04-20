@@ -5,20 +5,15 @@ import map.Level;
 import logic.Direction;
 import logic.GameState;
 import logic.Player;
-import logic.TileCoordinate;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.fills.GradientFill;
 import org.newdawn.slick.tiled.TiledMap;
-import org.newdawn.slick.geom.Rectangle;
-
 
 public class MainDisplay extends BasicGame {
 
@@ -96,8 +91,8 @@ public class MainDisplay extends BasicGame {
 		p.applyForces();
 		p.movement();
 		
-		if ( p.getTilePos().toString().equals( goalTile.toString() ) && (input.isKeyDown(Input.KEY_E)) ) {
-			state.loadNextLevel();
+		if ( p.getTilePosition().toString().equals( goalTile.toString() ) && (input.isKeyDown(Input.KEY_E)) ) {
+			state.loadNextLevel(p);
 		}
 	}
 

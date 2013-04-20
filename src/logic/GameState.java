@@ -19,9 +19,10 @@ public class GameState {
 		return currentLevel;
 	}
 
-	public void loadNextLevel() {
+	public void loadNextLevel( Player p ) {
 		try {
-			currentLevel = new Level(new TiledMap("res/Firsttest2.tmx"));
+			currentLevel = new Level( new TiledMap("res/Firsttest2.tmx"), p );
+			p.setCurrentLevel( currentLevel );
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

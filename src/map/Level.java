@@ -12,9 +12,10 @@ public class Level {
 	private boolean[][] terrainGrid, ladderGrid;
 	private InventoryObject[][] invObjGrid;
 	private int height, width;
-	private Player p;
+	private Player player;
 	private TiledMap map;
 	private TileCoordinate goalTile;
+	private Point2d startPos;
 
 	/*
 	 * For a .tmx-file to work with our game, it must adhere to the following conventions:
@@ -29,6 +30,18 @@ public class Level {
 
 	public Level(TiledMap map) {
 		this.map = map;
+		createGrid();
+		player = new Player(startPos, this);
+	}
+
+	public Level( TiledMap map, Player p ) {
+		this.map = map;
+		this.player = p;
+		createGrid();
+		p.setPos( startPos );
+	}
+
+	private void createGrid() {
 		height = map.getHeight();
 		width = map.getWidth();
 		terrainGrid = new boolean[height][width];
@@ -47,14 +60,14 @@ public class Level {
 				ladderGrid[y][x] = tileProp.equals("LADDER");
 
 				// Inventory object detection
-				if ( (tileID = map.getTileId(x, y, 3)) != 0 )
-					invObjGrid[y][x] = new InventoryObject(map.getTileProperty(tileID, "name", "FaultyObj"));
+				if ( ( tileID = map.getTileId(x, y, 3) ) != 0 )
+					invObjGrid[y][x] = new InventoryObject( map.getTileProperty(tileID, "name", "FaultyObj") );
 
 				// Player/goal detection
 				tileID = map.getTileId(x, y, 4);
 				tileProp = map.getTileProperty(tileID, "name", "EMPTY");
 				if (tileProp.equals("PLAYER"))
-					p = new Player(new Point2d(x*32+15, y*32+15), this);
+					startPos = new Point2d(x*32+15, y*32+15);
 				if (tileProp.equals("GOAL"))
 					goalTile = new TileCoordinate(x, y);
 			}
@@ -87,7 +100,7 @@ public class Level {
 	}
 
 	public Player getPlayer() {
-		return p;
+		return player;
 	}
 
 	public void removeObject( TileCoordinate c ) {
@@ -109,7 +122,7 @@ public class Level {
 	public TileCoordinate getGoal() {
 		return goalTile;
 	}
-	
+
 	public TiledMap getMap() {
 		return map;
 	}

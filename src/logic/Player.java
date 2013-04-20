@@ -16,12 +16,12 @@ public class Player {
 	private Point2d startPosition;
 	private int health;
 	private Level currentLevel;
-	private Inventory inv;
+	private Inventory inventory;
 
 	private double velocityX, velocityY;
 
 	// Player constructor
-	public Player(Point2d position, Level currentLevel) {
+	public Player( Point2d position, Level currentLevel ) {
 		this.currentLevel = currentLevel;
 		this.position = position;
 		this.startPosition = position;
@@ -30,7 +30,7 @@ public class Player {
 		health = 100;
 		velocityX = 0;
 		velocityY = 0;
-		inv = new Inventory();
+		inventory = new Inventory();
 	}
 
 	private void updateCornerlist() {
@@ -45,7 +45,7 @@ public class Player {
 		return health;
 	}
 
-	public Point2d getPos() {
+	public Point2d getPosition() {
 		return position;
 	}
 
@@ -53,9 +53,10 @@ public class Player {
 		return cornerList;
 	}
 
-	public Point2d getStartPos() {
+	public Point2d getStartPosition() {
 		return startPosition;
 	}
+
 	// Setters
 	public void setHealth(int health) {
 		if ( health > 0 && health <= MAX_HEALTH )
@@ -75,9 +76,10 @@ public class Player {
 		else if (dHealth > 0)
 			this.health = 0;
 	}
-	
-	public void setPos() {
-		
+
+	public void setPos( Point2d position ) {
+		this.position = position ;
+		updateCornerlist();
 	}
 
 	// Movement
@@ -148,12 +150,12 @@ public class Player {
 	}
 
 	public void pickupObject() {
-		inv.addItem( currentLevel.getInvObj( tilePosition ) );
+		inventory.addItem( currentLevel.getInvObj( tilePosition ) );
 		currentLevel.removeObject( tilePosition );
 	}
 
 	public Inventory getInventory() {
-		return inv;
+		return inventory;
 	}
 
 	public void movement() {
@@ -173,7 +175,11 @@ public class Player {
 
 	}
 
-	public TileCoordinate getTilePos() {
+	public TileCoordinate getTilePosition() {
 		return tilePosition;
+	}
+
+	public void setCurrentLevel(Level arg) {
+		this.currentLevel = arg;
 	}
 }
