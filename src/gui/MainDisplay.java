@@ -44,15 +44,16 @@ public class MainDisplay extends BasicGame {
 
 	@Override
 	public void init(GameContainer gc) throws SlickException {
+		// Game essential stuff 
 		map = new TiledMap("res/Firsttest.tmx");
 		state = new GameState(new Level(map));
 		p = state.getLevel().getPlayer();
 		playerImage = new Image("res/pubdlcnt.png");
 		input = gc.getInput();
+		
+		// UI
 		gc.setTargetFrameRate(60);
 		gc.setShowFPS(false);
-
-		System.out.println(state.getLevel().toString());
 	}
 
 	@Override

@@ -2,6 +2,31 @@
 <map version="1.0" orientation="orthogonal" width="25" height="19" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="main" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="3200" height="3200"/>
+  <tile id="101">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="102">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="103">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="104">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="105">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
   <tile id="202">
    <properties>
     <property name="name" value="TERRAIN"/>
@@ -82,6 +107,11 @@
     <property name="name" value="LADDER"/>
    </properties>
   </tile>
+  <tile id="1513">
+   <properties>
+    <property name="name" value="PLAYER"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="10001" name="background" tilewidth="800" tileheight="600">
   <image source="sky1.png" width="1920" height="1200"/>
@@ -106,22 +136,22 @@
  </layer>
  <layer name="TERRAIN" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF6OA0EJ8B4rNAfI5GdugzMjAYALEhEBsxUmbWqHsxwUh27ygYfuArNE1gS4tfKUwvMP2RTBAaW1oEyZFjD7rZe5lwqwXJYbMH5GeQf88g0ejsM0SqgYkhi59D8zMyNkASN8Aihq4OHcPkQOEIAMWVNVA=
+   eJxjYBjeIB2IM4E4iwpm0BOA7MxgoMzd1Aa43IRNnBx3p5HpLnqAwRAflLhhMKUjaoDBEB/UBkPZT6eB+CwQn6Oh2VMYEfgMVOwMEj7LgCmOrgYmhiwOcrM+0EwDIDZEwwZI4gZYxNDVoWOYnBEQAwDQdCZd
   </data>
  </layer>
  <layer name="LADDER" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYKAdeMlKQ8NH7Ri1Y9SOUTtGuB3YzBu1Y3ACANjHEpk=
+   eJxjYBgF+MBL1lE76AGGSxgM9nAeBaNgFAwMAAAPEQWV
   </data>
  </layer>
  <layer name="INVOBJ" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRQC4QVYfQYuqomJpm0wLQ0uxRgAkASsABqQ==
+   eJxjYBgFo2AUjIJRMApoD8TUGRhE1RH0SAIA72AA8w==
   </data>
  </layer>
- <layer name="PLAYER" width="25" height="19" visible="0">
+ <layer name="PLAYER" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMAooAzOYB9oFgxsAALXJAJw=
+   eJxjYBgFo2AUjIJRMArIA69YB9oFQwMAABvOAPA=
   </data>
  </layer>
 </map>

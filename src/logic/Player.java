@@ -86,7 +86,7 @@ public class Player {
 
 	public void move(Direction dir, int magnitude) {
 		if ( collision(dir) ) {
-			if (velocityX > 15 || velocityY > 15) {
+			if (velocityX > 20 || velocityY > 20) {
 				decreaseHealth(3);
 				System.out.println("Health: " + this.health);
 			}
@@ -99,7 +99,7 @@ public class Player {
 
 	public void jump(){
 		if( !collision( Direction.DOWN ) || collision( Direction.UP ) ) return;
-		accelerate(Direction.UP, 12);
+		accelerate(Direction.UP, 13);
 	}
 
 	public void accelerate( Direction dir, double magnitude ) {
