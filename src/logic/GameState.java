@@ -1,5 +1,9 @@
 package logic;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -19,12 +23,24 @@ public class GameState {
 	}
 
 	public void loadNextLevel( Player player ) {
-		try {
-			currentLevel = new Level( new TiledMap("res/Firsttest2.tmx"), player );
-			player.setCurrentLevel( currentLevel );
-		} catch (SlickException e) {
-			e.printStackTrace();
-			System.out.println("Unable to load requested level");
+		if (requirementsMet(player)) {
+			try {
+				currentLevel = new Level(new TiledMap("res/Firsttest2.tmx"),
+						player);
+				player.setCurrentLevel(currentLevel);
+			} catch (SlickException e) {
+				e.printStackTrace();
+				System.out.println("Unable to load requested level");
+			}
 		}
-	} 
+	}
+	
+	private boolean requirementsMet(Player p) {
+		Iterator<Entry<InventoryObject, Integer>> it = currentLevel.getRequirements().entrySet().iterator();
+		while(it.hasNext()) {
+			Map.Entry pairs = (Map.Entry)it.next();
+			if (p.getInventory().contains((InventoryObject) pairs.getKey()) != (Integer)pairs.getValue()) return false;
+		}
+		return true;
+	}
 }

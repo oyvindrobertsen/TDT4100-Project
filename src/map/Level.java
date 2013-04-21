@@ -1,5 +1,9 @@
 package map;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.HashMap;
+
 import javax.vecmath.Point2d;
 
 import logic.InventoryObject;
@@ -8,14 +12,17 @@ import logic.TileCoordinate;
 
 import org.newdawn.slick.tiled.TiledMap;
 
+import java.util.Scanner;
+
 public class Level {
 	private boolean[][] terrainGrid, ladderGrid;
 	private InventoryObject[][] invObjGrid;
-	private int height, width;
+	private int height, width, mapNr;
 	private Player player;
 	private TiledMap map;
 	private TileCoordinate goalTile;
 	private Point2d startPos;
+	private HashMap<InventoryObject, Integer> requirements;
 
 	/*
 	 * For a .tmx-file to work with our game, it must adhere to the following conventions:
@@ -32,6 +39,7 @@ public class Level {
 		this.map = map;
 		createGrid();
 		player = new Player(startPos, this);
+		readRequirements();
 	}
 
 	public Level( TiledMap map, Player player ) {
@@ -39,6 +47,7 @@ public class Level {
 		this.player = player;
 		createGrid();
 		player.setPos( startPos );
+		readRequirements();
 	}
 
 	private void createGrid() {
@@ -74,6 +83,27 @@ public class Level {
 		}
 	}
 
+	private void readRequirements() {
+		mapNr = Integer.parseInt(map.getMapProperty("mapnumber", "-1"));
+		if (mapNr != -1) {
+			requirements = new HashMap<InventoryObject, Integer>();
+			try {
+				Scanner scanner = new Scanner(new FileReader("/Users/oyvindrobertsen/Documents/Code/Eclipse/TDT4100-Project/res/requirements"+mapNr));
+				try {
+					while (scanner.hasNextLine()) {
+						String[] parts = scanner.nextLine().split("\\:");
+						requirements.put(new InventoryObject(parts[0]),Integer.parseInt(parts[1]));
+					}
+				} finally {
+					scanner.close();
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+				System.out.println("Error: missing requirements file for this level!");
+			}
+		}
+	}
+	
 	public boolean isBlocked( TileCoordinate c ) {
 		return terrainGrid[c.y()][c.x()];
 	}
@@ -101,6 +131,10 @@ public class Level {
 
 	public Player getPlayer() {
 		return player;
+	}
+	
+	public HashMap<InventoryObject, Integer> getRequirements() {
+		return requirements;
 	}
 
 	public void removeObject( TileCoordinate c ) {

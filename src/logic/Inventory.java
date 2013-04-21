@@ -40,6 +40,13 @@ public class Inventory {
 		items.clear();
 	}
 
+	public int contains(InventoryObject io) {
+		int counter = 0;
+		for (InventoryObject i : items) {
+			if (i.toString().equals(io.toString())) counter++;
+		}
+		return counter;
+	}
 	public String toString() {
 		String out = "Inventory:\t";
 		for ( InventoryObject o : items ) {
