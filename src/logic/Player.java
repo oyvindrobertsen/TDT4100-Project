@@ -31,27 +31,41 @@ public class Player {
 		inventory = new Inventory();
 	}
 
-	private void updateCornerlist() {
-		cornerList[0] = new Point2d(position.x-15, position.y-15); // Upper left
-		cornerList[1] = new Point2d(position.x-15, position.y+15); // Lower left
-		cornerList[2] = new Point2d(position.x+15, position.y-15); // Upper right
-		cornerList[3] = new Point2d(position.x+15, position.y+15); // Lower right
+	public void setCurrentLevel(Level arg) {
+		this.currentLevel = arg;
 	}
 
-	// Getters
-	public int getHealth() {
-		return health;
+	// Position
+
+	public void setPos( Point2d position ) {
+		this.position = position ;
+		updateCornerlist();
 	}
 
 	public Point2d getPosition() {
 		return position;
 	}
 
+	private void updateCornerlist() {
+		cornerList[0] = new Point2d( position.x-15, position.y-15 ); // Upper left
+		cornerList[1] = new Point2d( position.x-15, position.y+15 ); // Lower left
+		cornerList[2] = new Point2d( position.x+15, position.y-15 ); // Upper right
+		cornerList[3] = new Point2d( position.x+15, position.y+15 ); // Lower right
+	}
+
 	public Point2d[] getCorners() {
 		return cornerList;
 	}
 
-	// Setters
+	public TileCoordinate getTilePosition() {
+		return tilePosition;
+	}
+	
+	// Health
+	public int getHealth() {
+		return health;
+	}
+
 	public void setHealth(int health) {
 		if ( health > 0 && health <= MAX_HEALTH )
 			this.health = health;
@@ -71,15 +85,32 @@ public class Player {
 			this.health = 0;
 	}
 
-	public void setPos( Point2d position ) {
-		this.position = position ;
-		updateCornerlist();
+	public boolean dead() {
+		return health == 0;
 	}
 
 	// Movement
 
+	public double getVelocityX() {
+		return velocityX;
+	}
+
+	public double getVelocityY() {
+		return velocityY;
+	}
+
+	public void stop() {
+		this.velocityX = 0;
+		this.velocityY = 0;
+	}
+
+	public void accelerate( Direction dir, double magnitude ) {
+		velocityX += magnitude * dir.dx();
+		velocityY += magnitude * dir.dy();
+	}
+
 	public boolean collision( Direction dir ) {
-		for (int i = 0; i < 4; i++) {
+		for ( int i = 0; i < 4; i++ ) {
 			int nextX = (int)cornerList[i].x + dir.dx();
 			int nextY = (int)cornerList[i].y + dir.dy();
 			try {
@@ -93,7 +124,7 @@ public class Player {
 
 	public void move( Direction dir, int pixels ) {
 		if ( collision(dir) ) {
-			if (velocityX > 20 || velocityY > 20) {
+			if ( velocityX > 20 || velocityY > 20 ) {
 				decreaseHealth(3);
 			}
 			return;
@@ -110,22 +141,6 @@ public class Player {
 		accelerate(Direction.UP, 13);
 	}
 
-	public void accelerate( Direction dir, double magnitude ) {
-		velocityX += magnitude * dir.dx();
-		velocityY += magnitude * dir.dy();
-	}
-
-	public double getVelocityX() {
-		return velocityX;
-	}
-
-	public double getVelocityY() {
-		return velocityY;
-	}
-	
-	public boolean dead() {
-		return health == 0;
-	}
 	public void applyForces() {
 		if ( onLadder() || ( collision(Direction.DOWN) && velocityY > 0 ) )
 			velocityY = 0;
@@ -134,6 +149,23 @@ public class Player {
 
 		if ( collision(Direction.DOWN) || collision(Direction.UP) )
 			velocityX = velocityX/1.25;
+	}
+
+	public void movement() {
+		for ( int i = 0; i < Math.abs( (int)getVelocityX() ); i++ ) {
+			if( getVelocityX() > 0 )
+				move(Direction.RIGHT, 1);
+			if( getVelocityX() < 0 )
+				move(Direction.LEFT, 1);
+		}
+
+		for ( int i = 0; i < Math.abs( (int)getVelocityY() ); i++ ) {
+			if( getVelocityY() < 0 )
+				move(Direction.UP, 1);
+			if( getVelocityY() > 0 )
+				move(Direction.DOWN, 1);
+		}
+
 	}
 
 	public boolean onLadder() {
@@ -154,38 +186,8 @@ public class Player {
 	public Inventory getInventory() {
 		return inventory;
 	}
-	
+
 	public void clearInventory() {
 		inventory.clear();
-	}
-
-	public void movement() {
-		for ( int i = 0; i < Math.abs( (int)getVelocityX() ); i++) {
-			if( getVelocityX() > 0 )
-				move(Direction.RIGHT, 1);
-			if( getVelocityX() < 0 )
-				move(Direction.LEFT, 1);
-		}
-
-		for ( int i = 0; i < Math.abs( (int)getVelocityY() ); i++) {
-			if( getVelocityY() < 0 )
-				move(Direction.UP, 1);
-			if( getVelocityY() > 0 )
-				move(Direction.DOWN, 1);
-		}
-
-	}
-
-	public TileCoordinate getTilePosition() {
-		return tilePosition;
-	}
-
-	public void setCurrentLevel(Level arg) {
-		this.currentLevel = arg;
-	}
-	
-	public void stop() {
-		this.velocityX = 0;
-		this.velocityY = 0;
 	}
 }

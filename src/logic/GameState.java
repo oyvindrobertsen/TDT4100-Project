@@ -8,8 +8,7 @@ import map.Level;
 public class GameState {
 	private Level currentLevel;
 
-	public GameState() {
-	}
+	public GameState() {}
 
 	public GameState(Level level) {
 		this.currentLevel = level;
@@ -19,10 +18,10 @@ public class GameState {
 		return currentLevel;
 	}
 
-	public void loadNextLevel( Player p ) {
+	public void loadNextLevel( Player player ) {
 		try {
-			currentLevel = new Level( new TiledMap("res/Firsttest2.tmx"), p );
-			p.setCurrentLevel( currentLevel );
+			currentLevel = new Level( new TiledMap("res/Firsttest2.tmx"), player );
+			player.setCurrentLevel( currentLevel );
 		} catch (SlickException e) {
 			e.printStackTrace();
 			System.out.println("Unable to load requested level");

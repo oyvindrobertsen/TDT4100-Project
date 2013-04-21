@@ -2,30 +2,20 @@ package logic;
 
 import java.util.ArrayList;
 
-import org.lwjgl.Sys;
-
 public class Inventory {
 	private ArrayList<InventoryObject> items = new ArrayList<InventoryObject>();
 
 	public Inventory() {}
 
-	public void addItem(InventoryObject arg) {
-		for ( InventoryObject itm : items){
-			if ( itm.toString().equals( arg.toString() ) ){
-				itm.increment();
+	public void addItem( InventoryObject item ) {
+		for ( InventoryObject o : items){
+			if ( o.toString().equals( item.toString() ) ){
+				o.increment();
 				return;
 			}
 		}
-		items.add(arg);
+		items.add(item);
 		sort();
-	}
-
-	public String toString() {
-		String out = "Inventory:\t";
-		for ( InventoryObject i : items ) {
-			out += i + " (" + i.getCount() + ")\t";
-		}
-		return out;
 	}
 
 	private void sort(){
@@ -45,8 +35,17 @@ public class Inventory {
 			if (sorted) break;
 		}
 	}
-	
+
 	public void clear() {
 		items.clear();
 	}
+
+	public String toString() {
+		String out = "Inventory:\t";
+		for ( InventoryObject o : items ) {
+			out += o + " (" + o.getCount() + ")\t";
+		}
+		return out;
+	}
+
 }

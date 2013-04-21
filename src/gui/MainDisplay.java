@@ -5,6 +5,7 @@ import map.Level;
 import logic.Direction;
 import logic.GameState;
 import logic.Player;
+import logic.TileCoordinate;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
@@ -24,7 +25,7 @@ public class MainDisplay extends BasicGame {
 	private GameState state;
 	private Player player;
 	private Image playerImage, healthBar, healthImage;
-	private Object goalTile;
+	private TileCoordinate goalTile;
 
 	public MainDisplay(String title) {
 		super(title);
@@ -44,11 +45,11 @@ public class MainDisplay extends BasicGame {
 		
 		// UI
 		healthBar.draw(10, 10);
-		healthImage.draw(11,12, (float)(326*((double)player.getHealth()/300.0)), 12);
+		healthImage.draw(11,12, (float)( 326*( player.getHealth() / 300.0 ) ), 12 );
 	}
 
 	@Override
-	public void init(GameContainer gc) throws SlickException {
+	public void init( GameContainer gc ) throws SlickException {
 		// Game essential stuff 
 		map = new TiledMap("res/Firsttest.tmx");
 		state = new GameState(new Level(map));
@@ -70,9 +71,8 @@ public class MainDisplay extends BasicGame {
 		map = state.getLevel().getMap();
 		player = state.getLevel().getPlayer();
 		
-		if (player.dead()) {
+		if ( player.dead() )
 			state.getLevel().reloadLevel();
-		}
 
 		if ( player.onLadder() ){
 			if ( input.isKeyDown(Input.KEY_UP) )	player.move(Direction.UP, 2);
@@ -82,7 +82,8 @@ public class MainDisplay extends BasicGame {
 			return;
 		}
 
-		if ( player.onObject() && input.isKeyDown(Input.KEY_E) ) 	player.pickupObject();
+		if ( player.onObject() && input.isKeyDown(Input.KEY_E) )
+			player.pickupObject();
 
 		if( input.isKeyDown(Input.KEY_SPACE) )
 			player.jump();
@@ -95,9 +96,9 @@ public class MainDisplay extends BasicGame {
 		player.applyForces();
 		player.movement();
 		
-		if ( player.getTilePosition().toString().equals( goalTile.toString() ) && (input.isKeyDown(Input.KEY_E)) ) {
+		TileCoordinate tile = player.getTilePosition();
+		if ( input.isKeyDown(Input.KEY_E) && tile.x() == goalTile.x() && tile.y() == goalTile.y() )
 			state.loadNextLevel(player);
-		}
 	}
 
 	public static void main(String[] args) throws SlickException {
