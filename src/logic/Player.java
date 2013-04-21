@@ -179,7 +179,14 @@ public class Player {
 	}
 
 	public void pickupObject() {
-		inventory.addItem( currentLevel.getInvObj( tilePosition ) );
+		
+		InventoryObject item = currentLevel.getInvObj( tilePosition );
+		
+		if ( ( item.toString().equals("APPLE") || item.toString().equals("ORANGE") ) && ( health < MAX_HEALTH ) )
+			health += 20;
+		else
+			inventory.addItem( item  );
+
 		currentLevel.removeObject( tilePosition );
 	}
 
