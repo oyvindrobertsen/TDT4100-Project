@@ -18,12 +18,13 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class MainDisplay extends BasicGame {
 
-	private TiledMap map;
-	private Input input;
 	private static final int WIDTH = 800;
 	private static final int HEIGHT = 600;
+
 	private GameState state;
+	private TiledMap map;
 	private Player player;
+	private Input input;
 	private Image playerImage, healthBar, healthImage;
 	private TileCoordinate goalTile;
 
@@ -42,7 +43,7 @@ public class MainDisplay extends BasicGame {
 
 		// Player rendering
 		playerImage.draw( (float)player.getCorners()[0].x, (float)player.getCorners()[0].y ); // Layer 4 in .tmx
-		
+
 		// UI
 		healthBar.draw(10, 10);
 		healthImage.draw(11,12, (float)( 326*( player.getHealth() / 300.0 ) ), 12 );
@@ -56,13 +57,13 @@ public class MainDisplay extends BasicGame {
 		player = state.getLevel().getPlayer();
 		playerImage = new Image("res/pubdlcnt.png");
 		input = gc.getInput();
-		
+
 		// UI
 		gc.setTargetFrameRate(60);
 		gc.setShowFPS(false);
 		healthBar = new Image("res/bar_empty.png"); // Health bar background
 		healthImage = new Image("res/health.png");
-		
+
 		goalTile = state.getLevel().getGoal();
 	}
 
@@ -70,7 +71,7 @@ public class MainDisplay extends BasicGame {
 	public void update(GameContainer gc, int delta) throws SlickException {
 		map = state.getLevel().getMap();
 		player = state.getLevel().getPlayer();
-		
+
 		if ( player.dead() )
 			state.getLevel().reloadLevel();
 
@@ -94,8 +95,8 @@ public class MainDisplay extends BasicGame {
 		}
 
 		player.applyForces();
-		player.movement();
-		
+		player.doMovement();
+
 		TileCoordinate tile = player.getTilePosition();
 		if ( input.isKeyDown(Input.KEY_E) && tile.x() == goalTile.x() && tile.y() == goalTile.y() )
 			state.loadNextLevel(player);

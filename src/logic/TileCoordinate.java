@@ -23,7 +23,11 @@ public class TileCoordinate {
 	public int y() {
 		return y;
 	}
-	
+
+	public TileCoordinate offset ( int dx, int dy ){
+		return new TileCoordinate(x+dx, y+dy);
+	}
+
 	public String toString(){
 		return x + " " + y;
 	}

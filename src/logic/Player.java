@@ -60,7 +60,7 @@ public class Player {
 	public TileCoordinate getTilePosition() {
 		return tilePosition;
 	}
-	
+
 	// Health
 	public int getHealth() {
 		return health;
@@ -113,8 +113,9 @@ public class Player {
 		for ( int i = 0; i < 4; i++ ) {
 			int nextX = (int)cornerList[i].x + dir.dx();
 			int nextY = (int)cornerList[i].y + dir.dy();
+			TileCoordinate nextTile = new TileCoordinate( new Point2d( nextX, nextY ) );
 			try {
-				if ( ( currentLevel.isBlocked( new TileCoordinate( new Point2d( nextX, nextY ) ) ) ) || nextX < 0 ) return true;
+				if ( ( currentLevel.isBlocked( nextTile  ) ) || nextX < 0 ) return true;
 			} catch ( Exception e ) {
 				return true;
 			}
@@ -124,9 +125,8 @@ public class Player {
 
 	public void move( Direction dir, int pixels ) {
 		if ( collision(dir) ) {
-			if ( velocityX > 20 || velocityY > 20 ) {
+			if ( velocityX > 20 || velocityY > 20 )
 				decreaseHealth(3);
-			}
 			return;
 		}
 
@@ -151,7 +151,7 @@ public class Player {
 			velocityX = velocityX/1.25;
 	}
 
-	public void movement() {
+	public void doMovement() {
 		for ( int i = 0; i < Math.abs( (int)getVelocityX() ); i++ ) {
 			if( getVelocityX() > 0 )
 				move(Direction.RIGHT, 1);
@@ -179,11 +179,11 @@ public class Player {
 	}
 
 	public void pickupObject() {
-		
+
 		InventoryObject item = currentLevel.getInvObj( tilePosition );
-		
+
 		if ( ( item.toString().equals("APPLE") || item.toString().equals("ORANGE") ) && ( health < MAX_HEALTH ) )
-			health += 20;
+			increaseHealth(20);
 		else
 			inventory.addItem( item  );
 
