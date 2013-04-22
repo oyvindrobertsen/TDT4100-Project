@@ -98,8 +98,12 @@ public class MainDisplay extends BasicGame {
 		player.doMovement();
 
 		TileCoordinate tile = player.getTilePosition();
-		if ( input.isKeyDown(Input.KEY_E) && tile.x() == goalTile.x() && tile.y() == goalTile.y() )
-			state.loadNextLevel(player);
+		if ( input.isKeyDown(Input.KEY_E) && tile.x() == goalTile.x() && tile.y() == goalTile.y() ){
+			if ( state.requirementsMet( player ) )
+				state.loadNextLevel(player);
+			else
+				System.out.println("Requirement for level not met."); // her kan vi printe en string fra requirements-fila som forklara ka som må gjøres.
+		}
 	}
 
 	public static void main(String[] args) throws SlickException {
@@ -109,10 +113,10 @@ public class MainDisplay extends BasicGame {
 	}
 
 	public void keyPressed( int key, char c ) {
-		if (key == Input.KEY_ESCAPE)
+		if ( key == Input.KEY_ESCAPE )
 			System.exit(0);
 
-		if (key == Input.KEY_I)
+		if ( key == Input.KEY_I )
 			System.out.println(player.getInventory());
 
 	}

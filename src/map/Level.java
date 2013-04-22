@@ -88,7 +88,7 @@ public class Level {
 		if (mapNr != -1) {
 			requirements = new HashMap<InventoryObject, Integer>();
 			try {
-				Scanner scanner = new Scanner(new FileReader("/Users/oyvindrobertsen/Documents/Code/Eclipse/TDT4100-Project/res/requirements"+mapNr));
+				Scanner scanner = new Scanner( new FileReader("./res/requirements"+mapNr) );
 				try {
 					while (scanner.hasNextLine()) {
 						String[] parts = scanner.nextLine().split("\\:");
@@ -103,7 +103,7 @@ public class Level {
 			}
 		}
 	}
-	
+
 	public boolean isBlocked( TileCoordinate c ) {
 		return terrainGrid[c.y()][c.x()];
 	}
@@ -132,7 +132,7 @@ public class Level {
 	public Player getPlayer() {
 		return player;
 	}
-	
+
 	public HashMap<InventoryObject, Integer> getRequirements() {
 		return requirements;
 	}
@@ -160,7 +160,7 @@ public class Level {
 	public TiledMap getMap() {
 		return map;
 	}
-	
+
 	private Point2d findPlayer() {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
@@ -171,7 +171,7 @@ public class Level {
 		}
 		return new Point2d(0,0);
 	}
-	
+
 	public void reloadLevel() {
 		player.setPos(findPlayer());
 		player.stop();
