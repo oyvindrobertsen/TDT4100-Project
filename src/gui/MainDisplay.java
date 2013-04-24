@@ -52,7 +52,7 @@ public class MainDisplay extends BasicGame {
 	@Override
 	public void init( GameContainer gc ) throws SlickException {
 		// Game essential stuff 
-		map = new TiledMap("res/Firsttest.tmx");
+		map = new TiledMap("res/Level1.tmx");
 		state = new GameState(new Level(map));
 		player = state.getLevel().getPlayer();
 		playerImage = new Image("res/pubdlcnt.png");
@@ -63,8 +63,6 @@ public class MainDisplay extends BasicGame {
 		gc.setShowFPS(false);
 		healthBar = new Image("res/bar_empty.png"); // Health bar background
 		healthImage = new Image("res/health.png");
-
-		goalTile = state.getLevel().getGoal();
 	}
 
 	@Override
@@ -74,7 +72,9 @@ public class MainDisplay extends BasicGame {
 
 		if ( player.dead() )
 			state.getLevel().reloadLevel();
-
+		
+		if (input.isKeyDown(Input.KEY_R))	state.getLevel().reloadLevel();
+		
 		if ( player.onLadder() ){
 			if ( input.isKeyDown(Input.KEY_UP) )	player.move(Direction.UP, 2);
 			if ( input.isKeyDown(Input.KEY_DOWN) )	player.move(Direction.DOWN, 2);
@@ -98,11 +98,15 @@ public class MainDisplay extends BasicGame {
 		player.doMovement();
 
 		TileCoordinate tile = player.getTilePosition();
-		if ( input.isKeyDown(Input.KEY_E) && tile.x() == goalTile.x() && tile.y() == goalTile.y() ){
-			if ( state.requirementsMet( player ) )
-				state.loadNextLevel(player);
-			else
-				System.out.println("Requirement for level not met."); // her kan vi printe en string fra requirements-fila som forklara ka som må gjøres.
+		if (state.getLevel().getGoal() != null) {
+			if (input.isKeyDown(Input.KEY_E) && tile.x() == state.getLevel().getGoal().x() && tile.y() == state.getLevel().getGoal().y()) {
+				if (state.requirementsMet(player))
+					state.loadNextLevel(player);
+				else {
+					System.out.println("Requirement for level not met."); // her kan vi printe en string fra requirements-fila som forklara ka som mï¿½ gjï¿½res.
+					System.out.println("Requirements: " + state.getLevel().getRequirements());
+				}
+			}
 		}
 	}
 

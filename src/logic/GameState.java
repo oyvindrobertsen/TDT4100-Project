@@ -24,9 +24,9 @@ public class GameState {
 
 	public void loadNextLevel( Player player ) {
 		try {
-			currentLevel = new Level(new TiledMap("res/Firsttest2.tmx"), player);
+			currentLevel = new Level(new TiledMap("res/Level"+(currentLevel.getMapNr()+1) +".tmx"), player);
 			player.setCurrentLevel(currentLevel);
-		} catch (SlickException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Unable to load requested level");
 		}
@@ -36,7 +36,7 @@ public class GameState {
 		Iterator<Entry<InventoryObject, Integer>> it = currentLevel.getRequirements().entrySet().iterator();
 		while(it.hasNext()) {
 			Map.Entry pairs = (Map.Entry)it.next();
-			if (p.getInventory().contains((InventoryObject) pairs.getKey()) != (Integer)pairs.getValue()) return false;
+			if (p.getInventory().contains((InventoryObject) pairs.getKey()) < (Integer)pairs.getValue()) return false;
 		}
 		return true;
 	}

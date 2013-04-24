@@ -88,6 +88,7 @@ public class Level {
 		if (mapNr != -1) {
 			requirements = new HashMap<InventoryObject, Integer>();
 			try {
+				// When exporting a .jar, replace with new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/res/requirements"+mapNr))) instead of FileReader
 				Scanner scanner = new Scanner( new FileReader("./res/requirements"+mapNr) );
 				try {
 					while (scanner.hasNextLine()) {
@@ -133,6 +134,9 @@ public class Level {
 		return player;
 	}
 
+	public int getMapNr() {
+		return mapNr;
+	}
 	public HashMap<InventoryObject, Integer> getRequirements() {
 		return requirements;
 	}

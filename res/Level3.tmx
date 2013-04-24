@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="25" height="19" tilewidth="32" tileheight="32">
+ <properties>
+  <property name="mapnumber" value="3"/>
+ </properties>
  <tileset firstgid="1" name="main" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="3200" height="3200"/>
   <tile id="101">
@@ -77,7 +80,52 @@
     <property name="name" value="TESTOBJ"/>
    </properties>
   </tile>
+  <tile id="401">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="402">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="403">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="404">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="405">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
   <tile id="500">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="502">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="503">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="504">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="505">
    <properties>
     <property name="name" value="TERRAIN"/>
    </properties>
@@ -102,9 +150,39 @@
     <property name="name" value="TERRAIN"/>
    </properties>
   </tile>
+  <tile id="704">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="705">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="800">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
   <tile id="919">
    <properties>
     <property name="name" value="PLAYER"/>
+   </properties>
+  </tile>
+  <tile id="1001">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="1102">
+   <properties>
+    <property name="name" value="TERRAIN"/>
+   </properties>
+  </tile>
+  <tile id="1103">
+   <properties>
+    <property name="name" value="TERRAIN"/>
    </properties>
   </tile>
   <tile id="1512">
@@ -147,6 +225,14 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="10262" name="Key" tilewidth="32" tileheight="32">
+  <image source="key.png" width="32" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="name" value="KEY"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="BACKGROUND" width="25" height="19">
   <data encoding="base64" compression="zlib">
    eJzFzVVXlFEYxfHzFmDLgB14JXYAtgJ2fgY7B2wdsPMKuwYs1AE7PwN2Ddg6YOdnwPy7znluZr3jWlyoZ63f1bPP3kr9vxdAGtLRCq3RBm3RDu3RAR3RCZ2RgS4N6AuhyNwCCTIN2ZS+YqzCasRQa26hBJk1WIt1WI8N2IhN2Iwt2Go2pK8OL/EKuZZSeZa+xRJkXuMN3uId3uMDPuITPuOL2ZC+fIzEKERQYembiM+MxhiMxTiMxwRMxCRMxhRLb0hfJU7iFJJspZJtfYtY/pnTOIOzOIfzuICLuITLuGI2pC8FjdAYQRTY+ibiM03QFM3QHC3QEqkIIA3ptt6QvkIsxCJEUW22grZ/ZjGWYCmWYTlWYCVCKEKx2ZC+GjzAQ2Q5SmU7+ha1/TOP8BhP8BTP8BwvEEMt6syG9OVgAAYijFJH30R8ZhAGYwiGYhiGYwRykYd8R29IXxkO4hDq8dVshR3/zGEcwVGU4xiO4wQiqECl2ZC+b/iOH5jqKjXN1bd6xz/z8/d/MhZsOHDhIQnJSHH1hvRNxwzMRBWuuvom4jOzMBtzMBfzMB8LEEQBCs2G9F3DddxAV0+pTE/fqlz/zE3cwm3cwV3cw31EUY0asyF93dAdPVCCbZ6+ifhMT/RCb/RBX/RDf2QhGzme3pC+7diBndiF3WarxPtzZg/2Yh/24wDCKEUZUjPVX3//YuMXjSqtuQ==
@@ -154,22 +240,22 @@
  </layer>
  <layer name="TERRAIN" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBjeIB2IM4E4iwpm0BOA7MxgoMzd1Aa43IRNnBx3p5HpLnqAwRAflLhhMKUjaoDBEB/UBkPZT6eB+CwQn6Oh2VMYEfgMVOwMEj7LgCmOrgYmhiwOcrM+0EwDIDZEwwZI4gZYxNDVoWOYnBEQAwDQdCZd
+   eJxjYBjcIB2IM/DgLDLNTaOK6wYOgMKFXL8PFfsY8Ng51OOP2gAUXplQTEm+GI7gNBCfo5G5Z4D4LBD7szAwHGKinrlnkcx9xczAcJCJcvNh7j0DNfcnIwL/YqTU1RDzQeb+gJr5gxGVTa4dsPCAufsHI3YMskeJGaH2DAMq+wwOcVDa0AfqNQBiQzRsgCRugEUMXR06hskZATEAEVg6pQ==
   </data>
  </layer>
  <layer name="LADDER" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF+MBL1lE76AGGSxgM9nAeBaNgFAwMAAAPEQWV
+   eJxjYBgFo2Bwgpeso3YMdntH7Ri1Y6jaQW8AALHxCjs=
   </data>
  </layer>
  <layer name="INVOBJ" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjALqAVF1BgYx9YF2xSgYBYMLAAB8kQB6
+   eJxjYBgFo2AUjIJRMApoD8Q0GBhE1QfaFQMDAH5FAHs=
   </data>
  </layer>
  <layer name="START/END" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjALKwWtWTDxQ9g5Gd9DbDfQC9LRrKAMAhUEYYQ==
+   eJxjYBgFo4C6QFRjoF0wCkbBKKAXeM060C4YGgAAU5UBLg==
   </data>
  </layer>
 </map>

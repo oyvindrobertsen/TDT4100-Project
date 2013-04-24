@@ -41,11 +41,10 @@ public class Inventory {
 	}
 
 	public int contains(InventoryObject io) {
-		int counter = 0;
 		for (InventoryObject i : items) {
-			if (i.toString().equals(io.toString())) counter++;
+			if (i.toString().equals(io.toString())) return i.getCount();
 		}
-		return counter;
+		return 0;
 	}
 	public String toString() {
 		String out = "Inventory:\t";
