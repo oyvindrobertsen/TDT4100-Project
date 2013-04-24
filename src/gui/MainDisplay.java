@@ -76,10 +76,10 @@ public class MainDisplay extends BasicGame {
 		if (input.isKeyDown(Input.KEY_R))	state.getLevel().reloadLevel();
 		
 		if ( player.onLadder() ){
-			if ( input.isKeyDown(Input.KEY_UP) )	player.move(Direction.UP, 2);
-			if ( input.isKeyDown(Input.KEY_DOWN) )	player.move(Direction.DOWN, 2);
-			if ( input.isKeyDown(Input.KEY_LEFT) )	player.move(Direction.LEFT, 1);
-			if ( input.isKeyDown(Input.KEY_RIGHT) )	player.move(Direction.RIGHT, 1);
+			if ( input.isKeyDown(Input.KEY_UP) )	{	player.move(Direction.UP, 2);	player.stop(); }
+			if ( input.isKeyDown(Input.KEY_DOWN) )	{	player.move(Direction.DOWN, 2);	player.stop(); }
+			if ( input.isKeyDown(Input.KEY_LEFT) )	{	player.move(Direction.LEFT, 1);	player.stop(); }
+			if ( input.isKeyDown(Input.KEY_RIGHT) )	{	player.move(Direction.RIGHT, 1);player.stop(); }
 			return;
 		}
 
