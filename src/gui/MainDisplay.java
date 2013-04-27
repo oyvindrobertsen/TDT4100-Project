@@ -26,7 +26,6 @@ public class MainDisplay extends BasicGame {
 	private Player player;
 	private Input input;
 	private Image playerImage, healthBar, healthImage;
-	private TileCoordinate goalTile;
 
 	public MainDisplay(String title) {
 		super(title);
@@ -103,7 +102,7 @@ public class MainDisplay extends BasicGame {
 				if (state.requirementsMet(player))
 					state.loadNextLevel(player);
 				else {
-					System.out.println("Requirement for level not met."); // her kan vi printe en string fra requirements-fila som forklara ka som m� gj�res.
+					System.out.println("Requirement for level not met.");
 					System.out.println("Requirements: " + state.getLevel().getRequirements());
 				}
 			}

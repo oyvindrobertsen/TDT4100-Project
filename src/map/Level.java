@@ -1,7 +1,9 @@
 package map;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 import javax.vecmath.Point2d;
@@ -98,7 +100,7 @@ public class Level {
 				} finally {
 					scanner.close();
 				}
-			} catch (FileNotFoundException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Error: missing requirements file for this level!");
 			}
